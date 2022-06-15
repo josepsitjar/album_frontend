@@ -1,5 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+    <!--
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -38,16 +39,22 @@
         />
       </q-list>
     </q-drawer>
+    -->
 
     <q-page-container>
       <router-view />
+      
+      <!-- Footer-->
+      <footer class="bg-light py-5">
+        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Company Name</div></div>
+      </footer>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+//import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
@@ -98,7 +105,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    //EssentialLink
   },
 
   setup () {
@@ -111,6 +118,57 @@ export default defineComponent({
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
     }
+  },
+  methods:{
+
+  },
+  mounted(){
+    // Navbar shrink function
+    var navbarShrink = function () {
+      const navbarCollapsible = document.body.querySelector('#mainNav');
+      if (!navbarCollapsible) {
+          return;
+      }
+      if (window.scrollY === 0) {
+          navbarCollapsible.classList.remove('navbar-shrink')
+      } else {
+          navbarCollapsible.classList.add('navbar-shrink')
+      }
+
+    };
+
+    // Shrink the navbar
+    navbarShrink();
+
+    // Shrink the navbar when page is scrolled
+    document.addEventListener('scroll', navbarShrink);
+
+    // Activate Bootstrap scrollspy on the main nav element
+    const mainNav = document.body.querySelector('#mainNav');
+    if (mainNav) {
+      new bootstrap.ScrollSpy(document.body, {
+        target: '#mainNav',
+        offset: 74,
+      });
+    };
+
+    // Collapse responsive navbar when toggler is visible
+    const navbarToggler = document.body.querySelector('.navbar-toggler');
+    const responsiveNavItems = [].slice.call(
+      document.querySelectorAll('#navbarResponsive .nav-link')
+    );
+    responsiveNavItems.map(function (responsiveNavItem) {
+      responsiveNavItem.addEventListener('click', () => {
+        if (window.getComputedStyle(navbarToggler).display !== 'none') {
+            navbarToggler.click();
+        }
+      });
+    });
   }
 })
 </script>
+
+<style>
+/* import css from theme */
+@import "../css/styles.css";
+</style>
