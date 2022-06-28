@@ -11,6 +11,7 @@
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -82,20 +83,82 @@
         </div>
     </section>
 
+
+
   </q-page>
+
+  <!-- login form dialog -->
+  <q-dialog
+    v-model="loginForm"
+  >
+    <q-card square class="shadow-24" style="width: 700px; max-width: 80vw;">
+      <q-card-section class="bg-primary">
+          <h4 class="text-h5 text-white q-my-md">SignIn <span><q-btn flat round icon="close" v-close-popup  class="float-right" style="margin-right:10px"></q-btn></span></h4>
+      </q-card-section>
+
+      <form id="loginForm" v-on:submit.prevent="submitLoginForm">
+        <q-card-section>
+            <q-input outlined type="email" v-model="username" name="username" label="User name" style="padding-left:15px;"/>
+            <q-input outlined type="password" v-model="password" label="Password" style="padding-left:15px;margin-top:15px;"/>
+        </q-card-section>
+
+        <q-card-section>
+          <!-- Submit Button-->
+          <div class="d-grid"><button class="btn btn-secondary btn-xl " id="submitButton" type="submit">Login</button></div>
+        </q-card-section>
+      </form>
+
+      <q-card-section class="text-center q-pa-none">
+        <p class="text-grey-6">Not reigistered? <router-link to="/register">Created an Account</router-link></p>
+      </q-card-section>
+
+    </q-card>
+
+
+  </q-dialog>
 </template>
 
 <script>
+import { ref } from 'vue'
 import { defineComponent } from 'vue'
 import VueSmoothScroll from 'vue3-smooth-scroll'
+import axios from 'axios'
+
+import { userAuthStore } from 'stores/usr-auth'
 
 export default defineComponent({
   name: 'HomePage',
-
-  setup () {
+  data() {
     return {
-      VueSmoothScroll
+      username: '',
+      password: ''
     }
+
+  },
+  setup () {
+    const authStore = userAuthStore()
+
+    return {
+      VueSmoothScroll,
+      loginForm: ref(false),
+      email: ref(''),
+      authStore
+    }
+  },
+  beforeCreate() {
+    /*
+    const authStore = userAuthStore()
+    authStore.initializeStore()
+
+    const token = authStore.getToken
+
+    if ( token ) {
+      axios.defaults.headers.common['Authorization'] = "Token " + token
+    } else {
+      axios.defaults.headers.common['Authorization'] = ''
+    }
+    */
+
   },
   methods:{
     scrollMeTo(refName) {
@@ -103,22 +166,48 @@ export default defineComponent({
       var top = element.offsetTop;
       window.scrollTo(0, top);
     },
+    submitLoginForm(e) {
+      const formData = {
+        username: this.username,
+        password: this.password
+      }
+
+      console.log(formData)
+
+      axios
+        .post('http://127.0.0.1:8000/accounts/login',formData)
+        .then(response => {
+          console.log(response)
+
+          //const token = response.data.auth_token
+
+          //this.authStore.setToken(token)
+
+
+          //axios.defaults.headers.common['Authorization'] = "Token " + token
+
+          //localStorage.setItem("token", token)
+
+          this.$router.push('/private')
+
+        })
+        .catch(error => {
+          console.log(error)
+        })
+
+    }
   },
   mounted() {
 
   }
 })
-
-
-
 </script>
 
 
 <style>
-
-
 .link_menu{
   cursor: pointer;
 }
+
 
 </style>
