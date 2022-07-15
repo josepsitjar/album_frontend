@@ -4,11 +4,13 @@ export const userAuthStore = defineStore('auth', {
   state: () => ({
     counter: 0,
     token: '',
+    user_id: '',
     isAuthenticated: false
   }),
   getters: {
     doubleCount: (state) => state.counter * 2,
     getToken: (state) => state.token,
+    getUserId: (state) => state.user_id,
     getAuthenticated: (state) => state.isAuthenticated
   },
   actions: {
@@ -27,6 +29,9 @@ export const userAuthStore = defineStore('auth', {
     setToken(token) {
       this.token = token
       this.isAuthenticated = true
+    },
+    setUserId(id) {
+      this.user_id = id
     },
     removeToken() {
       this.token = ''

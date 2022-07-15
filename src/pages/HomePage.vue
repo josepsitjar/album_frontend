@@ -172,21 +172,19 @@ export default defineComponent({
         password: this.password
       }
 
-      console.log(formData)
-
       axios
         .post('http://127.0.0.1:8000/accounts/login',formData)
         .then(response => {
-          console.log(response)
 
-          //const token = response.data.auth_token
+          const token = response.data.token
 
-          //this.authStore.setToken(token)
+          this.authStore.setToken(token)
+          this.authStore.setUserId(response.data.user_id)
 
 
-          //axios.defaults.headers.common['Authorization'] = "Token " + token
+          axios.defaults.headers.common['Authorization'] = "Token " + token
 
-          //localStorage.setItem("token", token)
+          localStorage.setItem("token", token)
 
           this.$router.push('/private')
 
