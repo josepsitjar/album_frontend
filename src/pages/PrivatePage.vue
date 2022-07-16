@@ -26,22 +26,27 @@
 
 
     <!-- Image Gallery-->
+    <!--light box with w3schools-->
     <section class="page-section" id="gallery" ref="gallery">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
-                  <span v-for="img in imgs" :key="img.id" class="images">
+                  <span v-for="(img, index) in imgs" :key="img.id" class="images">
+
                     <q-img
                       :src="img.image"
                       spinner-color="white"
                       style="height: 240px; max-width: 250px"
                       fit="cover"
-                      @click="openImage()"
+
+                      @click="openCarousel(index)"
                     >
                       <div class="absolute-bottom text-subtitle1 text-center">
                         {{ img.description }}
+                        {{ index }}
                       </div>
                     </q-img>
+
                   </span>
 
                 </div>
@@ -50,6 +55,27 @@
     </section>
 
   </q-page>
+
+  <q-dialog v-model="carousel" full-width>
+
+    <q-carousel
+      transition-prev="slide-right"
+      transition-next="slide-left"
+      swipeable
+      animated
+      v-model="slide"
+      control-color="primary"
+      thumbnails
+      infinite
+      class="bg-white shadow-1 rounded-borders"
+      height="80vh"
+
+    >
+      <q-carousel-slide v-for="(img, index) in imgs" :key="img.id" :name="index" :img-src="img.image" ></q-carousel-slide>
+
+    </q-carousel>
+
+  </q-dialog>
 
 
 </template>
@@ -90,32 +116,14 @@ export default defineComponent({
     }, 1000)
 
 
-
-    const gallery = [
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-      {url: 'https://www.w3schools.com/css/img_forest.jpg'},
-    ]
-
     return {
+      carousel:ref(false),
+      slide: ref(1),
+
       VueSmoothScroll,
       isAuthenticated,
       userId,
       authStore,
-      gallery,
       imgs,
     }
   },
@@ -130,8 +138,9 @@ export default defineComponent({
       var top = element.offsetTop;
       window.scrollTo(0, top);
     },
-    openImage() {
-      alert('eee')
+    openCarousel(index) {
+      this.carousel=true
+      this.slide = index
     },
     logout() {
 
@@ -180,6 +189,8 @@ export default defineComponent({
 #gallery {
   margin-top: 50px;
 }
+
+
 
 .text-subtitle1{
   margin:5px;
