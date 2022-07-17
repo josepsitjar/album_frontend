@@ -26,7 +26,6 @@
 
 
     <!-- Image Gallery-->
-    <!--light box with w3schools-->
     <section class="page-section" id="gallery" ref="gallery">
         <div class="container">
             <div class="row justify-content-center">
@@ -57,7 +56,7 @@
   </q-page>
 
   <q-dialog v-model="carousel" full-width>
-
+    <q-btn round icon="fa fa-times" color="black"  class="close_button" @click="closeCarousel()"></q-btn>
     <q-carousel
       transition-prev="slide-right"
       transition-next="slide-left"
@@ -76,6 +75,8 @@
     </q-carousel>
 
   </q-dialog>
+
+
 
 
 </template>
@@ -142,6 +143,9 @@ export default defineComponent({
       this.carousel=true
       this.slide = index
     },
+    closeCarousel(){
+      this.carousel=false
+    },
     logout() {
 
       const token = this.authStore.getToken
@@ -198,6 +202,16 @@ export default defineComponent({
 .q-img__image{
   padding:5px;
   cursor: pointer;
+
+}
+
+.close_button{
+  position:absolute;
+  top: 4vh;
+  right: 2vw;
+  font-size: 10px;
+  cursor:pointer;
+  pointer-events: auto;
 
 }
 </style>

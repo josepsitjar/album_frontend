@@ -114,7 +114,6 @@
 
     </q-card>
 
-
   </q-dialog>
 </template>
 
@@ -177,6 +176,7 @@ export default defineComponent({
         .then(response => {
 
           const token = response.data.token
+          console.log(token)
 
           this.authStore.setToken(token)
           this.authStore.setUserId(response.data.user_id)
