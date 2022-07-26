@@ -11,7 +11,9 @@
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
+
+                    <li v-if="!token" class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <li v-if="user_email" class="nav-item"><a class="nav-link link_menu" @click="goToPrivate()" > {{ user_email }} </a></li>
                 </ul>
             </div>
         </div>
@@ -22,11 +24,11 @@
         <div class="container px-4 px-lg-5 h-100">
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
-                    <h1 class="text-white font-weight-bold">Your Favorite Place for Free Bootstrap Themes</h1>
+                    <h1 class="text-white font-weight-bold">A delicious platform to manage and share your pictures.</h1>
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
+                    <p class="text-white-75 mb-5">Create an account to create your albums. Whether you are a professional or just an amaterur, PicBook will help you to manage and visualize your photos.  you are a Find out all the options that PicBook can offer to </p>
                     <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
                 </div>
             </div>
@@ -137,11 +139,16 @@ export default defineComponent({
   setup () {
     const authStore = userAuthStore()
 
+    const token = localStorage.getItem('token')
+    const user_email = localStorage.getItem('user_email')
+
     return {
       VueSmoothScroll,
       loginForm: ref(false),
       email: ref(''),
-      authStore
+      authStore,
+      token,
+      user_email
     }
   },
   beforeCreate() {
@@ -172,11 +179,11 @@ export default defineComponent({
       }
 
       axios
-        .post('http://127.0.0.1:8000/accounts/login',formData)
+        .post(process.env.API + 'accounts/login', formData)
         .then(response => {
 
           const token = response.data.token
-          console.log(token)
+          console.log(response)
 
           this.authStore.setToken(token)
           this.authStore.setUserId(response.data.user_id)
@@ -184,7 +191,9 @@ export default defineComponent({
 
           axios.defaults.headers.common['Authorization'] = "Token " + token
 
+          localStorage.setItem("user_email", response.data.email)
           localStorage.setItem("token", token)
+          localStorage.setItem("userId", response.data.user_id)
 
           this.$router.push('/private')
 
@@ -193,6 +202,9 @@ export default defineComponent({
           console.log(error)
         })
 
+    },
+    goToPrivate() {
+      this.$router.push('/private')
     }
   },
   mounted() {

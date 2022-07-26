@@ -14,13 +14,16 @@ export const imageStore = defineStore('images', {
       this.images = []
 
       try {
-        this.images = await fetch('http://127.0.0.1:8000/photos/?format=json&user=1', {
+        var userId = localStorage.getItem('userId');
+        var token = localStorage.getItem("token");
+
+        this.images = await fetch('http://82.223.13.59/apidjrframework/photos/?format=json&user='+userId+'', {
           method: 'GET',
           credentials: "same-origin",
           headers: {
-            "Authorization": 'Token a3f6d0c4533cef47863069cbc89974ff4c2ae9b3',
+            "Authorization": 'Token '+token+'',
             "X-Requested-With": "XMLHttpRequest",
-            'X-CSRFToken': "a3f6d0c4533cef47863069cbc89974ff4c2ae9b3",
+            'X-CSRFToken': token,
             Accept: "application/json",
             'Content-Type': 'application/json'
           }

@@ -74,7 +74,8 @@ export default {
       }
 
       axios
-        .post('http://127.0.0.1:8000/accounts/register', formData)
+        .post(process.env.API + 'accounts/register', formData)
+        //.post('http://127.0.0.1:8000/accounts/register', formData)
         .then(response => {
           this.$router.push('/private')
           console.log(response)

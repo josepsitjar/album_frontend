@@ -53,6 +53,13 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
+      env: {
+        API: ctx.dev
+          //? 'http://127.0.0.1:8000/'
+          ? 'http://82.223.13.59/apidjrframework/'
+          : 'http://82.223.13.59/apidjrframework/'
+      },
+
       // transpile: false,
       // publicPath: '/',
 

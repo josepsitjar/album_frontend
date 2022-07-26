@@ -10,6 +10,7 @@
                   <li class="nav-item"><a class="nav-link link_menu" href="#services">Gallery</a></li>
                   <li class="nav-item"><a class="nav-link link_menu" href="#services">Albums</a></li>
                   <li class="nav-item"><a class="nav-link link_menu" href="#services">Map</a></li>
+                  <li class="nav-item"><a class="nav-link link_menu" href="/" @click="logout">Logout</a></li>
                     <!--
                     <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('about')">About</a></li>
                     <li class="nav-item"><a class="nav-link link_menu" href="#services">Services</a></li>
@@ -42,7 +43,6 @@
                     >
                       <div class="absolute-bottom text-subtitle1 text-center">
                         {{ img.description }}
-                        {{ index }}
                       </div>
                     </q-img>
 
@@ -102,8 +102,7 @@ export default defineComponent({
   setup () {
     const authStore = userAuthStore()
     const isAuthenticated = storeToRefs(authStore)
-    const userId = authStore.getToken
-    localStorage.setItem("user_id", userId)
+
 
     // image store
     const imgStore = imageStore()
@@ -123,7 +122,6 @@ export default defineComponent({
 
       VueSmoothScroll,
       isAuthenticated,
-      userId,
       authStore,
       imgs,
     }
@@ -147,7 +145,12 @@ export default defineComponent({
       this.carousel=false
     },
     logout() {
+      this.$router.push('/private')
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('user_email');
 
+      /*
       const token = this.authStore.getToken
       console.log('token on logout')
       console.log(token)
@@ -166,6 +169,7 @@ export default defineComponent({
         })
 
         this.$router.push('/')
+        */
 
     }
   },
