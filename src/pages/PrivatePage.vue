@@ -10,7 +10,9 @@
                   <li class="nav-item"><a class="nav-link link_menu" href="#services">Gallery</a></li>
                   <li class="nav-item"><a class="nav-link link_menu" href="#services">Albums</a></li>
                   <li class="nav-item"><a class="nav-link link_menu" href="#services">Map</a></li>
-                  <li class="nav-item"><a class="nav-link link_menu" href="/" @click="logout">Logout</a></li>
+                  <button onclick="location.href='/';" @click="logout" class="btn"><i class="fa fa-sign-out"></i></button>
+
+
                     <!--
                     <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('about')">About</a></li>
                     <li class="nav-item"><a class="nav-link link_menu" href="#services">Services</a></li>
@@ -145,32 +147,21 @@ export default defineComponent({
       this.carousel=false
     },
     logout() {
+
       this.$router.push('/private')
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
       localStorage.removeItem('user_email');
 
-      /*
-      const token = this.authStore.getToken
-      console.log('token on logout')
-      console.log(token)
 
       axios
-        .post('http://127.0.0.1:8000/auth/v1/token/logout', token)
+        .get('http://82.223.13.59/apidjrframework/api-auth/logout/')
         .then(response => {
-          axios.defaults.headers.common['Authorization'] = "Token " + token
-
-
-          this.$router.push('/')
-          console.log(response)
+          
         })
         .catch(error => {
           console.log(error)
         })
-
-        this.$router.push('/')
-        */
-
     }
   },
   mounted() {
