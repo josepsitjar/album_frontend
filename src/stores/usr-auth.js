@@ -26,6 +26,12 @@ export const userAuthStore = defineStore('auth', {
         this.isAuthenticated = false
       }
     },
+    noAuthenticated() {
+      this.isAuthenticated = false
+    },
+    isAuthenticated() {
+      this.isAuthenticated = true
+    },
     setToken(token) {
       this.token = token
       this.isAuthenticated = true

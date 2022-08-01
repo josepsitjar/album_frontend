@@ -12,7 +12,7 @@
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 
-                    <li v-if="!token" class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                    <li v-if="token == null" class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     <li v-if="user_email" class="nav-item"><a class="nav-link link_menu" @click="goToPrivate()" > {{ user_email }} </a></li>
                 </ul>
             </div>
@@ -123,6 +123,7 @@
 import { ref } from 'vue'
 import { defineComponent } from 'vue'
 import VueSmoothScroll from 'vue3-smooth-scroll'
+import { storeToRefs } from 'pinia'
 import axios from 'axios'
 
 import { userAuthStore } from 'stores/usr-auth'
@@ -139,8 +140,11 @@ export default defineComponent({
   setup () {
     const authStore = userAuthStore()
 
+    const isAuthenticated = storeToRefs(authStore).getAuthenticated
+
     const token = localStorage.getItem('token')
     const user_email = localStorage.getItem('user_email')
+
 
     return {
       VueSmoothScroll,
@@ -148,7 +152,8 @@ export default defineComponent({
       email: ref(''),
       authStore,
       token,
-      user_email
+      user_email,
+      isAuthenticated
     }
   },
   beforeCreate() {
@@ -194,6 +199,8 @@ export default defineComponent({
           localStorage.setItem("user_email", response.data.email)
           localStorage.setItem("token", token)
           localStorage.setItem("userId", response.data.user_id)
+
+          this.authStore.isAuthenticated
 
           this.$router.push('/private')
 
