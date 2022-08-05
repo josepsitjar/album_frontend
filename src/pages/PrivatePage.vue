@@ -3,13 +3,13 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNavPrivate">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">PicBook</a>
+            <a class="navbar-brand" href="#page-top">Picbox</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                   <li class="nav-item"><a class="nav-link link_menu" @click="open_gallery">Gallery</a></li>
                   <li class="nav-item"><a class="nav-link link_menu" @click="open_album">Albums</a></li>
-                  <li class="nav-item"><a class="nav-link link_menu" href="#services">Map</a></li>
+                  <li class="nav-item"><a class="nav-link link_menu" @click="open_map">Map</a></li>
                   <li><button onclick="location.href='/';" @click="logout" class="btn nav-item"><i class="fa fa-sign-out"></i></button></li>
 
                 </ul>
@@ -20,15 +20,18 @@
 
     <!-- Image Gallery-->
     <GalleryComponent v-if="gallery"/>
+    <!-- Map -->
+    <MapComponent v-if="map_component"/>
 
     <!-- Album Image Gallery -->
     <section v-if="gallery_album" class="page-section" id="gallery_album" ref="gallery_album">
         <div class="container">
             <div class="row justify-content-center">
+
                 <div class="col-lg-12 text-center">
-
+                  <h2 class="albumTitle">{{ selectedAlbumDescription }}</h2>
+                  <br>
                   <span v-for="(img, index) in album_images" :key="img.id" class="images">
-
                     <q-img
                       :src="img.image"
                       spinner-color="white"
@@ -55,26 +58,23 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
+                  <h2 class="albumTitle">Album collection</h2>
+                  <br>
                   <span v-for="album in albums" :key="album.id" class="albums">
-
-
                     <q-img
                       :src="album.image"
                       spinner-color="white"
                       style="height: 440px; max-width: 350px"
                       fit="cover"
 
-                      @click="showAlbumImages(album.pk)"
+                      @click="showAlbumImages(album.pk, album.description)"
                     >
                       <div class="absolute-full text-subtitle1 flex flex-center">
                         {{ album.description }}
 
                       </div>
                     </q-img>
-
-
                   </span>
-
                 </div>
             </div>
         </div>
@@ -129,11 +129,13 @@ import { storeToRefs } from 'pinia'
 import VueSmoothScroll from 'vue3-smooth-scroll'
 
 import GalleryComponent  from 'components/GalleryComponent.vue'
+import MapComponent from 'components/MapComponent.vue'
 
 import { userAuthStore } from 'stores/usr-auth'
 import { imageStore } from 'stores/images.js'
 import { albumImageStore } from 'stores/album_images.js'
 import { albumStore } from 'stores/albums.js'
+import { imagesLocationStore } from 'stores/images_location.js'
 
 import axios from 'axios'
 
@@ -141,7 +143,7 @@ import axios from 'axios'
 
 export default defineComponent({
   name: 'PrivatePage',
-  components: { GalleryComponent },
+  components: { GalleryComponent, MapComponent },
   setup () {
     const spinner = ref(false)
 
@@ -155,6 +157,7 @@ export default defineComponent({
     setAlbums()
 
 
+    const selectedAlbumDescription = ref()
     const albums = ref([])
     setTimeout(function(){
       albums.value = albStore.getAlbums
@@ -162,15 +165,16 @@ export default defineComponent({
 
     // album images
     const album_images = ref([])
-    const showAlbumImages = function(index){
+    const showAlbumImages = function(albumPk, albumDescription){
       spinner.value = true
       // image store
       const albumImgStore = albumImageStore()
       const { setAlbumImages } = albumImageStore()
-      setAlbumImages(index)
+      setAlbumImages(albumPk)
 
       album_images.value = []
       setTimeout(function(){
+        selectedAlbumDescription.value = albumDescription
         album_images.value = albumImgStore.getImages
         spinner.value = false
       }, 1000)
@@ -181,6 +185,12 @@ export default defineComponent({
 
     }
 
+    // start loading map data
+    // image feature
+    const imgLocStore = imagesLocationStore()
+    const { setFeature } = imagesLocationStore()
+    setFeature()
+
 
 
     return {
@@ -188,6 +198,8 @@ export default defineComponent({
       spinner,
       gallery: ref(true),
       album: ref(false),
+      map_component: ref(false),
+      selectedAlbumDescription,
       gallery_album: ref(false),
       carousel_album: ref(false),
       slide: ref(1),
@@ -213,6 +225,7 @@ export default defineComponent({
     openAlbumCarousel(index){
       this.carousel_album=true
       this.slide = index
+
     },
     closeAlbumCarousel() {
       this.carousel_album=false
@@ -240,11 +253,42 @@ export default defineComponent({
       this.gallery = true
       this.album = false
       this.gallery_album = false
+      this.map_component = false
+
+      setTimeout(function(){
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100)
     },
     open_album() {
       this.gallery = false
       this.gallery_album = false
       this.album = true
+      this.map_component = false
+
+      setTimeout(function(){
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100)
+
+    },
+    open_map() {
+      this.gallery = false
+      this.gallery_album = false
+      this.album = false
+      this.map_component = true
+
+      setTimeout(function(){
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100)
+
     }
   },
   mounted() {
@@ -302,7 +346,16 @@ export default defineComponent({
 .q-carousel__slide{
   background-size: contain;  /* don't crop the image  */
   background-repeat: no-repeat;  /* only show the image one time  */
-  background-color: grey;  /* color to fill empty space with  */
+  background-color: black;  /* color to fill empty space with  */
+}
+
+.q-dialog__inner--fullwidth > div {
+  overflow: hidden;
+}
+
+.albumTitle{
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
 }
 
 </style>

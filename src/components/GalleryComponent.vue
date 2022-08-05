@@ -5,7 +5,8 @@
       <div class="container">
           <div class="row justify-content-center">
               <div class="col-lg-12 text-center">
-
+                <h2 class="galleryTitle">Image Gallery</h2>
+                <br>
                 <span v-for="(img, index) in imgs" :key="img.id" class="images">
 
                   <q-img
@@ -129,6 +130,11 @@ export default defineComponent({
   font-size: 10px;
   cursor:pointer;
   pointer-events: auto;
+}
+
+.galleryTitle{
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
 }
 
 

@@ -1,0 +1,238 @@
+<template>
+  <section v-if="map_section" class="page-section" id="map_section" ref="map_section">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-12 text-center">
+                <h2 class="mapTitle">Places of your pictures</h2>
+                <br>
+
+                <div class="map" id="map" ref="mapContainer"></div>
+
+              </div>
+          </div>
+      </div>
+  </section>
+</template>
+
+<script>
+import { ref } from 'vue'
+import { defineComponent } from 'vue'
+import { storeToRefs } from 'pinia'
+
+import { imagesLocationStore } from 'stores/images_location.js'
+
+import { Map, NavigationControl, Marker } from 'maplibre-gl';
+import { shallowRef, onMounted, onUnmounted, markRaw } from 'vue';
+
+
+export default defineComponent({
+  name: 'MapComponent',
+  components: {  },
+  setup(){
+
+    const mapContainer = shallowRef(null);
+    const map = shallowRef(null);
+
+    // image feature
+    const imgLocStore = imagesLocationStore()
+    //const { setFeature } = imagesLocationStore()
+    //setFeature()
+
+    //const featureColl = ref(null)
+    //setTimeout(function(){
+    //  featureColl.value = imgLocStore.getFeature
+    //spinner.value = false
+
+    //}, 1000)
+
+
+    onMounted(() => {
+
+
+      const initialState = { lng: 0.0, lat: 0.0, zoom: 1 };
+
+      map.value = markRaw(new Map({
+        container: mapContainer.value,
+        style: 'https://geoserveis.icgc.cat/contextmaps/icgc_orto_hibrida.json',
+        center: [initialState.lng, initialState.lat],
+        zoom: initialState.zoom
+      }));
+
+      map.value.addControl(new NavigationControl(), 'top-left');
+
+
+      // photo layers
+      map.value.on('load', function(){
+        // add source
+
+        map.value.addSource('photos', {
+          type: 'geojson',
+          data: imgLocStore.getFeature,
+          cluster: true,
+          clusterMaxZoom: 14, // Max zoom to cluster points on
+          clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+        });
+
+        // add layer to map
+        map.value.addLayer({
+          id: 'clusters',
+          type: 'circle',
+          source: 'photos',
+          filter: ['has', 'point_count'],
+          paint: {
+            // Use step expressions (https://maplibre.org/maplibre-gl-js-docs/style-spec/#expressions-step)
+            // with three steps to implement three types of circles:
+            //   * Blue, 20px circles when point count is less than 100
+            //   * Yellow, 30px circles when point count is between 100 and 750
+            //   * Pink, 40px circles when point count is greater than or equal to 750
+            'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              100,
+              '#f1f075',
+              750,
+            '#f28cb1'
+            ],
+            'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40
+            ]
+          }
+        });
+
+        // add cluster count layer
+        map.value.addLayer({
+          id: 'cluster-count',
+          type: 'symbol',
+          source: 'photos',
+          filter: ['has', 'point_count'],
+          layout: {
+            'text-field': '{point_count_abbreviated}',
+            'text-font': ['Arial-Italic'],
+            'text-size': 12
+          }
+        });
+
+
+        map.value.addLayer({
+          id: 'unclustered-point',
+          type: 'circle',
+          source: 'photos',
+          filter: ['!', ['has', 'point_count']],
+          paint: {
+            'circle-color': '#11b4da',
+            'circle-radius': 4,
+            'circle-stroke-width': 1,
+            'circle-stroke-color': '#fff'
+          }
+        });
+
+        // inspect a cluster on click
+        map.value.on('click', 'clusters', function (e) {
+          var features = map.value.queryRenderedFeatures(e.point, {
+            layers: ['clusters']
+          });
+          var clusterId = features[0].properties.cluster_id;
+          map.value.getSource('photos').getClusterExpansionZoom(
+            clusterId,
+            function (err, zoom) {
+              if (err) return;
+
+              map.value.easeTo({
+                center: features[0].geometry.coordinates,
+                zoom: zoom
+              });
+            }
+          );
+        });
+
+        // When a click event occurs on a feature in
+        // the unclustered-point layer, open a popup at
+        // the location of the feature, with
+        // description HTML from its properties.
+        map.value.on('click', 'unclustered-point', function (e) {
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var mag = e.features[0].properties.mag;
+
+
+          // Ensure that if the map is zoomed out such that
+          // multiple copies of the feature are visible, the
+          // popup appears over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+
+          alert('eee')
+        });
+
+
+        // pointer on cluster
+        map.value.on('mouseenter', 'clusters', function () {
+          map.value.getCanvas().style.cursor = 'pointer';
+        });
+        map.value.on('mouseleave', 'clusters', function () {
+          map.value.getCanvas().style.cursor = '';
+        });
+
+        // pointer marker
+        map.value.on('mouseenter', 'unclustered-point', function () {
+          map.value.getCanvas().style.cursor = 'pointer';
+        });
+        map.value.on('mouseleave', 'unclustered-point', function () {
+          map.value.getCanvas().style.cursor = '';
+        });
+
+
+
+      })
+
+
+
+    })
+
+
+    return {
+      map_section: ref(true),
+      map,
+      mapContainer,
+      //featureColl,
+      imgLocStore
+    }
+
+  },
+  methods:{
+  }
+
+})
+</script>
+
+<style>
+@import '~maplibre-gl/dist/maplibre-gl.css';
+
+.map {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+}
+
+
+#map_section {
+  margin-top: 50px;
+}
+.text-subtitle1{
+  margin:5px;
+}
+
+
+.mapTitle{
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
+}
+
+</style>
