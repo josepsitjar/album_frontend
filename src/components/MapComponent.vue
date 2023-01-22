@@ -12,6 +12,23 @@
           </div>
       </div>
   </section>
+
+  <!-- carrousel images album-->
+  <q-dialog v-model="carousel_images" full-width>
+    <q-btn round icon="fa fa-times" color="black"  class="close_button" @click="closeAlbumCarousel()"></q-btn>
+    <q-carousel
+      animated
+      v-model="slide"
+      control-color="primary"
+      class="bg-white shadow-1 rounded-borders"
+      height="80vh"
+      style="width: 300px"
+
+    >
+      <q-carousel-slide :name="1" :img-src=images />
+    </q-carousel>
+  </q-dialog>
+
 </template>
 
 <script>
@@ -44,6 +61,15 @@ export default defineComponent({
     //spinner.value = false
 
     //}, 1000)
+
+    // open images on popup
+    const images = ref()
+    const carousel_images = ref(false)
+    const openCarousel = function(img){
+      images.value = null
+      images.value = 'https://www.picbook.es/uploads/' + img
+      carousel_images.value = true
+    }
 
 
     onMounted(() => {
@@ -127,7 +153,7 @@ export default defineComponent({
           filter: ['!', ['has', 'point_count']],
           paint: {
             'circle-color': '#11b4da',
-            'circle-radius': 4,
+            'circle-radius': 7,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#fff'
           }
@@ -158,7 +184,10 @@ export default defineComponent({
         // description HTML from its properties.
         map.value.on('click', 'unclustered-point', function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
-          var mag = e.features[0].properties.mag;
+          //var mag = e.features[0].properties.mag;
+          var img = e.features[0].properties.photo;
+
+          openCarousel(img)
 
 
           // Ensure that if the map is zoomed out such that
@@ -168,7 +197,7 @@ export default defineComponent({
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
 
-          alert('eee')
+
         });
 
 
@@ -188,25 +217,27 @@ export default defineComponent({
           map.value.getCanvas().style.cursor = '';
         });
 
-
-
       })
-
-
 
     })
 
 
     return {
+      carousel_images,
+      slide: ref(1),
       map_section: ref(true),
       map,
       mapContainer,
-      //featureColl,
-      imgLocStore
+      imgLocStore,
+      openCarousel,
+      images
     }
 
   },
   methods:{
+    closeAlbumCarousel() {
+      this.carousel_images=false
+    },
   }
 
 })

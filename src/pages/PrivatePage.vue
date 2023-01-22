@@ -3,13 +3,14 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNavPrivate">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">Picbox</a>
+            <a class="navbar-brand">Picbook</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                   <li class="nav-item"><a class="nav-link link_menu" @click="open_gallery">Gallery</a></li>
                   <li class="nav-item"><a class="nav-link link_menu" @click="open_album">Albums</a></li>
                   <li class="nav-item"><a class="nav-link link_menu" @click="open_map">Map</a></li>
+                  <li class="nav-item"><a class="nav-link link_menu" @click="upload_data">Upload</a></li>
                   <li><button onclick="location.href='/';" @click="logout" class="btn nav-item"><i class="fa fa-sign-out"></i></button></li>
 
                 </ul>
@@ -22,6 +23,8 @@
     <GalleryComponent v-if="gallery"/>
     <!-- Map -->
     <MapComponent v-if="map_component"/>
+    <!-- Upload Data-->
+    <UploadComponent v-if="upload_page"/>
 
     <!-- Album Image Gallery -->
     <section v-if="gallery_album" class="page-section" id="gallery_album" ref="gallery_album">
@@ -51,7 +54,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- Albums -->
     <section v-if="album" class="page-section" id="album" ref="album">
@@ -130,6 +132,8 @@ import VueSmoothScroll from 'vue3-smooth-scroll'
 
 import GalleryComponent  from 'components/GalleryComponent.vue'
 import MapComponent from 'components/MapComponent.vue'
+import UploadComponent from 'components/UploadComponent.vue'
+
 
 import { userAuthStore } from 'stores/usr-auth'
 import { imageStore } from 'stores/images.js'
@@ -143,7 +147,7 @@ import axios from 'axios'
 
 export default defineComponent({
   name: 'PrivatePage',
-  components: { GalleryComponent, MapComponent },
+  components: { GalleryComponent, MapComponent, UploadComponent},
   setup () {
     const spinner = ref(false)
 
@@ -199,6 +203,7 @@ export default defineComponent({
       gallery: ref(true),
       album: ref(false),
       map_component: ref(false),
+      upload_page: ref(false),
       selectedAlbumDescription,
       gallery_album: ref(false),
       carousel_album: ref(false),
@@ -239,9 +244,8 @@ export default defineComponent({
 
       this.authStore.noAuthenticated
 
-
       axios
-        .get('http://82.223.13.59/apidjrframework/api-auth/logout/')
+        .get('https://www.picbook.es/apidjrframework/api-auth/logout/')
         .then(response => {
 
         })
@@ -254,6 +258,7 @@ export default defineComponent({
       this.album = false
       this.gallery_album = false
       this.map_component = false
+      this.upload_page = false
 
       setTimeout(function(){
         window.scrollTo({
@@ -267,6 +272,7 @@ export default defineComponent({
       this.gallery_album = false
       this.album = true
       this.map_component = false
+      this.upload_page = false
 
       setTimeout(function(){
         window.scrollTo({
@@ -281,6 +287,7 @@ export default defineComponent({
       this.gallery_album = false
       this.album = false
       this.map_component = true
+      this.upload_page = false
 
       setTimeout(function(){
         window.scrollTo({
@@ -289,6 +296,20 @@ export default defineComponent({
         });
       }, 100)
 
+    },
+    upload_data() {
+      this.gallery = false
+      this.gallery_album = false
+      this.album = false
+      this.map_component = false
+      this.upload_page = true
+      
+      setTimeout(function(){
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100)
     }
   },
   mounted() {

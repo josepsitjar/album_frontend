@@ -17,7 +17,7 @@ export const imageStore = defineStore('images', {
         var userId = localStorage.getItem('userId');
         var token = localStorage.getItem("token");
 
-        this.images = await fetch('http://82.223.13.59/apidjrframework/photos/?format=json&user='+userId+'', {
+        this.images = await fetch('https://www.picbook.es/apidjrframework/photos/?format=json&user='+userId+'', {
           method: 'GET',
           credentials: "same-origin",
           headers: {

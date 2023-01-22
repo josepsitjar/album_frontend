@@ -18,7 +18,7 @@ export const imagesLocationStore = defineStore('image_location', {
         var userId = localStorage.getItem('userId');
         var token = localStorage.getItem("token");
 
-        this.feature = await fetch('http://82.223.13.59/apidjrframework/photosGeojson/?format=json&user='+userId+'', {
+        this.feature = await fetch('https://www.picbook.es/apidjrframework/photosGeojson/?format=json&user='+userId+'', {
           method: 'GET',
           credentials: "same-origin",
           headers: {

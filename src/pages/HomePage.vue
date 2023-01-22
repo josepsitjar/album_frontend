@@ -3,14 +3,13 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">Picbox</a>
+            <a class="navbar-brand link_menu" @click="scrollMeTo('initial')">Picbook</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('about')">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('about')">Picbook</a></li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('services')">Funcionalidades</a></li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('contact')">Contacto</a></li>
 
                     <li v-if="token == null" class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     <li v-if="user_email" class="nav-item"><a class="nav-link link_menu" @click="goToPrivate()" > {{ user_email }} </a></li>
@@ -20,16 +19,16 @@
     </nav>
 
     <!-- Masthead-->
-    <header class="masthead">
+    <header class="masthead" ref="initial">
         <div class="container px-4 px-lg-5 h-100">
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
-                    <h1 class="text-white font-weight-bold">A delicious platform to manage and share your pictures.</h1>
+                    <h1 class="text-white font-weight-bold">Una plataforma para almacenar, organizar y visualizar tus fotos.</h1>
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Create an account to create your albums. Whether you are a professional or just an amaterur, Picbox will help you to manage and visualize your photos.  you are a Find out all the options that Picbox can offer to </p>
-                    <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                    <p class="text-white-75 mb-5">Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma Picbook.</p>
+                    <a class="btn btn-primary btn-xl" @click="scrollMeTo('about')">Ver más</a>
                 </div>
             </div>
         </div>
@@ -39,51 +38,87 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">We've got what you need!</h2>
+                    <h2 class="text-white mt-0">Tenemos lo que necesitas!</h2>
                     <hr class="divider divider-light" />
-                    <p class="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-                    <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
+                    <p class="text-white-75 mb-4">
+                      Picbook cuenta con todas las funcionalidades que necesitas para almacenar, catalogar, gestionar y visualizar tus fotografías de una forma simple y eficiente. Picbook es una plataforma desarrollada con código abierto, que te ayudará a catalogar y visualizar todos tus álbumes de fotos.
+                    </p>
+                    <p class="text-white-75 mb-4">Utiliza esta demo para descubrir la plataforma. User: <b>demo@picbook.es</b> and Password: <b>demo</b></p>
+                    <p class="text-white-75 mb-4">Contacta con nosotros para implementar una versión de Picbook personalizada y con funcionalidades adicionales.</p>
+                    <a class="btn btn-light btn-xl" @click="loginForm = true">Empezamos!</a>
+
                 </div>
             </div>
         </div>
     </section>
     <!-- Services-->
-    <section class="page-section" id="services">
+    <section class="page-section" id="services" ref="services">
         <div class="container px-4 px-lg-5">
-            <h2 class="text-center mt-0">At Your Service</h2>
+            <h2 class="text-center mt-0">Funcionalidades de Picbook</h2>
             <hr class="divider" />
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="mt-5">
-                        <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                        <h3 class="h4 mb-2">Sturdy Themes</h3>
-                        <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                        <div class="mb-2"><i class="fa fa-upload fa-3x"></i></div>
+                        <h3 class="h4 mb-2">Almacena tus fotografías</h3>
+                        <p class="text-muted mb-0">Almacena de forma segura todas las imágenes, con cópias de seguridad.</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="mt-5">
-                        <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                        <h3 class="h4 mb-2">Up to Date</h3>
-                        <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                        <div class="mb-2"><i class="fa fa-archive fa-3x"></i></div>
+                        <h3 class="h4 mb-2">Catálogo</h3>
+                        <p class="text-muted mb-0">Cataloga tus fotos, añadiendo información complementaria: título, descripción, ubicación, ...</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="mt-5">
-                        <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
-                        <h3 class="h4 mb-2">Ready to Publish</h3>
-                        <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+                        <div class="mb-2"><i class="fa fa-eye fa-3x"></i></div>
+                        <h3 class="h4 mb-2">Visualiza</h3>
+                        <p class="text-muted mb-0">Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes: por álbum, localización, palabras clave, fecha... </p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="mt-5">
-                        <div class="mb-2"><i class="bi-heart fs-1 text-primary"></i></div>
-                        <h3 class="h4 mb-2">Made with Love</h3>
-                        <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
+                        <div class="mb-2"><i class="fa fa-share-alt fa-3x"></i></div>
+                        <h3 class="h4 mb-2">Comparte</h3>
+                        <p class="text-muted mb-0">Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo. </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Portfolio-->
+    <div id="portfolio">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-lg-4 col-sm-6">
+                    <img class="img-fluid" src="../assets/portfolio/thumbnails/foto1.jpg" alt="..." />
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <img class="img-fluid" src="../assets/portfolio/thumbnails/foto2.jpg" alt="..." />
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <img class="img-fluid" src="../assets/portfolio/thumbnails/foto3.jpg" alt="..." />
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <img class="img-fluid" src="../assets/portfolio/thumbnails/foto4.jpg" alt="..." />
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <img class="img-fluid" src="../assets/portfolio/thumbnails/foto5.jpg" alt="..." />
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <img class="img-fluid" src="../assets/portfolio/thumbnails/foto6.jpg" alt="..." />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Contact Form -->
+    <div id="contact" ref="contact"></div>
+    <ContactformComponent />
 
 
 
@@ -126,14 +161,19 @@ import VueSmoothScroll from 'vue3-smooth-scroll'
 import { storeToRefs } from 'pinia'
 import axios from 'axios'
 
+import ContactformComponent from 'components/ContactformComponent.vue'
+
 import { userAuthStore } from 'stores/usr-auth'
 
 export default defineComponent({
   name: 'HomePage',
+  components: { ContactformComponent },
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+
+
     }
 
   },
