@@ -24,7 +24,7 @@
     <!-- Map -->
     <MapComponent v-if="map_component"/>
     <!-- Upload Data-->
-    <UploadComponent v-if="upload_page"/>
+    <UploadImageComponent v-if="upload_page"/>
 
     <!-- Album Image Gallery -->
     <section v-if="gallery_album" class="page-section" id="gallery_album" ref="gallery_album">
@@ -132,7 +132,7 @@ import VueSmoothScroll from 'vue3-smooth-scroll'
 
 import GalleryComponent  from 'components/GalleryComponent.vue'
 import MapComponent from 'components/MapComponent.vue'
-import UploadComponent from 'components/UploadComponent.vue'
+import UploadImageComponent from 'components/UploadImageComponent.vue'
 
 
 import { userAuthStore } from 'stores/usr-auth'
@@ -147,7 +147,7 @@ import axios from 'axios'
 
 export default defineComponent({
   name: 'PrivatePage',
-  components: { GalleryComponent, MapComponent, UploadComponent},
+  components: { GalleryComponent, MapComponent, UploadImageComponent},
   setup () {
     const spinner = ref(false)
 

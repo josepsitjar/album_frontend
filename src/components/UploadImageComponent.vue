@@ -9,12 +9,18 @@
                 <!--Form -->
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
-                        <form id="contactForm" @submit.prevent="submitFormContact">
+                        <form id="uploadImageForm" @submit.prevent="submitFormUploadImage">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" v-model="name" name="name" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Album</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">Debes introducir el nombre.</div>
+                                <input class="form-control" v-model="title" name="title" id="title" type="text" placeholder="Enter the title" data-sb-validations="required" />
+                                <label for="title">Title</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Introduce el título.</div>
+                            </div>
+                            <!-- Description-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" v-model="description" name="description" id="description" type="text" placeholder="Enter a description" data-sb-validations="required" />
+                                <label for="description">Description</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Introduce una descripción.</div>
                             </div>
                             <!-- Name input-->
                             <div class="form-floating mb-3">
@@ -65,19 +71,77 @@ import DropFile from "./DropFile.vue";
 
 import axios from 'axios'
 
+import { dropImagesStore } from 'stores/drop-images.js'
+
+
 export default defineComponent({
-  name: 'ContactformComponent',
+  name: 'UploadImageComponent',
   components: { DropFile },
+  data(){
+    return{
+      files: []
+    }
+  },
   setup(){
-
-
     return {
       upload_section: ref(true),
-      files: ref(null)
+      title: '',
+      description: ''
     }
   },
   methods:{
+    submitFormUploadImage(e) {
 
+      this.obtainFiles()
+      console.log('tis files')
+      console.log(this.files)
+
+      let data = new FormData()
+      data.append('title', this.title)
+      data.append('description', this.description)
+      data.append('image', this.files[0])
+
+      const formData = {
+        title: this.title,
+        description: this.description,
+        created_date: '2023-10-0133:22',
+        geom: 'fadfafda',
+        image: this.files[0].name,
+        user: 1,
+        album: 2
+      }
+
+      var token = localStorage.getItem("token");
+      
+      axios
+        .post(process.env.API + 'photos/', data, {
+          headers: {
+            "Authorization": 'Token '+token+'',
+            "X-Requested-With": "XMLHttpRequest",
+            'X-CSRFToken': token,
+            /*Accept: "application/json",
+            'Content-Type': 'application/json'*/
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then(response => {
+          this.messageSend = true
+          document.getElementById("uploadImageForm").reset()
+          this.name = ''
+          this.email = ''
+          this.message = ''
+          this.address = ''
+
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    obtainFiles(){
+      // drop-images store
+      const getImgStore = dropImagesStore()
+      this.files = getImgStore.getImages
+    }
 
   }
 

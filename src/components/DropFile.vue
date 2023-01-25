@@ -49,8 +49,13 @@
 </template>
 
 <script>
+import { dropImagesStore } from 'stores/drop-images.js'
+
 export default {
     name: 'DropFile',
+    setup(){
+
+    },
     data() {
         return {
         isDragging: false,
@@ -60,6 +65,9 @@ export default {
     methods: {
         onChange() {
             this.files = [...this.$refs.file.files];
+            console.log('files files')
+            console.log(this.files)
+            this.updateStore();
         },
         dragover(e) {
             e.preventDefault();
@@ -76,6 +84,7 @@ export default {
         },
         remove(i) {
             this.files.splice(i, 1);
+            this.updateStore()
         },
         generateURL(file) {
             let fileSrc = URL.createObjectURL(file);
@@ -84,6 +93,11 @@ export default {
             }, 1000);
             return fileSrc;
         },
+        updateStore(){
+            // drop-images store
+            const { setImages } = dropImagesStore()
+            setImages(this.files)
+        }
 
     },
 };
@@ -112,7 +126,6 @@ export default {
 }
 
 .preview-container {
-    display: flex;
     margin-top: 2rem;
 }
 
