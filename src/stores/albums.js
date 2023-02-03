@@ -17,7 +17,9 @@ export const albumStore = defineStore('albums', {
         var userId = localStorage.getItem('userId');
         var token = localStorage.getItem("token");
 
-        this.albums = await fetch('https://www.picbook.es/apidjrframework/albums/?format=json&user='+userId+'', {
+        process.env.API + 'accounts/login'
+        this.albums = await fetch(process.env.API+'albums/?format=json&user='+userId+'', {
+        //this.albums = await fetch('https://www.picbook.es/apidjrframework/albums/?format=json&user='+userId+'', {
           method: 'GET',
           credentials: "same-origin",
           headers: {

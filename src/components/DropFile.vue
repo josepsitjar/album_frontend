@@ -24,23 +24,25 @@
 
             <!-- this code shows the uploaded files -->
             <div class="preview-container mt-4" v-if="files.length">
-                <div v-for="file in files" :key="file.name" class="preview-card">
-                <div>
-                    <img class="preview-img" :src="generateURL(file)"/>
-                    <p>
-                    {{ file.name }}
-                    </p>
-                </div>
-                <div>
-                    <button
-                    class="ml-2"
-                    type="button"
-                    @click="remove(files.indexOf(file))"
-                    title="Remove file"
-                    >
-                    <b>×</b>
-                    </button>
-                </div>
+                <div v-for="file in files" :key="file.name">
+                    <div class="row">
+                        <div class="col-4">
+                            <img class="preview-img" :src="generateURL(file)"/>
+                        </div>
+                        <div class="col-7">
+                            {{ file.name }}
+                        </div>
+                        <div class="col-1">
+                            <small>
+                            <button
+                            class="btn-close"
+                            type="button"
+                            @click="remove(files.indexOf(file))"
+                            >
+                            </button>
+                            </small>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -97,6 +99,9 @@ export default {
             // drop-images store
             const { setImages } = dropImagesStore()
             setImages(this.files)
+        },
+        removeAll(){
+            this.files = []
         }
 
     },
@@ -137,8 +142,8 @@ export default {
 }
 
 .preview-img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 5px;
     border: 1px solid #a2a2a2;
     background-color: #a2a2a2;

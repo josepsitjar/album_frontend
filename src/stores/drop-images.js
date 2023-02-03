@@ -14,8 +14,7 @@ export const dropImagesStore = defineStore('drop-images', {
       
       try {
         this.images = imgs
-        console.log('files store')
-        console.log(this.images)
+        
       } catch(error){
         this.error = error
       }
