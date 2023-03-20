@@ -13,6 +13,21 @@
 
                     <li v-if="token == null" class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     <li v-if="user_email" class="nav-item"><a class="nav-link link_menu" @click="goToPrivate()" > {{ user_email }} </a></li>
+                    
+                    <li class="nav-item"><a class="nav-link link_menu">
+                      <q-select
+                        v-model="locale"
+                        :options="localeOptions"
+                        dense
+                        borderless
+                        emit-value
+                        map-options
+                        options-dense
+                        style="width: 150px;"
+                      />
+                      <li class="nav-item"><a class="nav-link link_menu" @click="$root.$i18n.locale='en-US'">EN</a></li>
+                      <li class="nav-item"><a class="nav-link link_menu" @click="$root.$i18n.locale='ca-ES'">CA</a></li>
+                    </a></li>
                 </ul>
             </div>
         </div>
@@ -23,6 +38,7 @@
         <div class="container px-4 px-lg-5 h-100">
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
+                    <h1>{{ $t('failed') }}</h1>
                     <h1 class="text-white font-weight-bold">Una plataforma para almacenar, organizar y visualizar tus fotos.</h1>
                     <hr class="divider" />
                 </div>
@@ -165,6 +181,9 @@ import ContactformComponent from 'components/ContactformComponent.vue'
 
 import { userAuthStore } from 'stores/usr-auth'
 
+import { useI18n } from 'vue-i18n'
+
+
 export default defineComponent({
   name: 'HomePage',
   components: { ContactformComponent },
@@ -185,6 +204,7 @@ export default defineComponent({
     const token = localStorage.getItem('token')
     const user_email = localStorage.getItem('user_email')
 
+    const { locale } = useI18n({ useScope: 'global' })
 
     return {
       VueSmoothScroll,
@@ -193,7 +213,12 @@ export default defineComponent({
       authStore,
       token,
       user_email,
-      isAuthenticated
+      isAuthenticated,
+      locale, 
+      localeOptions: [
+        { value: 'en-US', label: 'English' },
+        { value: 'ca-ES', label: 'Català' }
+      ]
     }
   },
   beforeCreate() {
