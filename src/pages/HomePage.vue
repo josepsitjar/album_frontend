@@ -8,12 +8,18 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('about')">Picbook</a></li>
-                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('services')">Funcionalidades</a></li>
-                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('contact')">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('services')">{{ $t('Funcionalidades') }}</a></li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="scrollMeTo('contact')">{{ $t('Contacto') }}</a></li>
 
                     <li v-if="token == null" class="nav-item"><a class="nav-link link_menu" @click="loginForm = true" ><i class="fa fa-user" aria-hidden="true"></i></a></li>
                     <li v-if="user_email" class="nav-item"><a class="nav-link link_menu" @click="goToPrivate()" > {{ user_email }} </a></li>
                     
+                    <!--<li class="nav-item"><a class="nav-link link_menu" @click="$root.$i18n.locale='en-US'">EN</a></li>-->
+                    <li class="nav-item" style="color:white">|</li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="$root.$i18n.locale='ca-ES'">CA</a></li>
+                    <li class="nav-item"><a class="nav-link link_menu" @click="$root.$i18n.locale='es-ES'">ES</a></li>
+                    
+                    <!--
                     <li class="nav-item"><a class="nav-link link_menu">
                       <q-select
                         v-model="locale"
@@ -24,10 +30,9 @@
                         map-options
                         options-dense
                         style="width: 150px;"
-                      />
-                      <li class="nav-item"><a class="nav-link link_menu" @click="$root.$i18n.locale='en-US'">EN</a></li>
-                      <li class="nav-item"><a class="nav-link link_menu" @click="$root.$i18n.locale='ca-ES'">CA</a></li>
+                    />
                     </a></li>
+                    -->
                 </ul>
             </div>
         </div>
@@ -38,13 +43,12 @@
         <div class="container px-4 px-lg-5 h-100">
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
-                    <h1>{{ $t('failed') }}</h1>
-                    <h1 class="text-white font-weight-bold">Una plataforma para almacenar, organizar y visualizar tus fotos.</h1>
+                    <h1 class="text-white font-weight-bold">{{ $t('Una plataforma para almacenar, organizar y visualizar tus fotos.') }}</h1>
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma Picbook.</p>
-                    <a class="btn btn-primary btn-xl" @click="scrollMeTo('about')">Ver más</a>
+                    <p class="text-white-75 mb-5">{{ $t('Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma Picbook.') }}</p>
+                    <a class="btn btn-primary btn-xl" @click="scrollMeTo('about')">{{ $t('Ver más') }}</a>
                 </div>
             </div>
         </div>
@@ -54,14 +58,14 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="text-white mt-0">Tenemos lo que necesitas!</h2>
+                    <h2 class="text-white mt-0">{{ $t('Tenemos lo que necesitas!') }}</h2>
                     <hr class="divider divider-light" />
                     <p class="text-white-75 mb-4">
-                      Picbook cuenta con todas las funcionalidades que necesitas para almacenar, catalogar, gestionar y visualizar tus fotografías de una forma simple y eficiente. Picbook es una plataforma desarrollada con código abierto, que te ayudará a catalogar y visualizar todos tus álbumes de fotos.
+                      {{ $t('Picbook cuenta con todas las funcionalidades que necesitas para almacenar, catalogar, gestionar y visualizar tus fotografías de una forma simple y eficiente. Picbook es una plataforma desarrollada con código abierto, que te ayudará a catalogar y visualizar todos tus álbumes de fotos.') }}   
                     </p>
-                    <p class="text-white-75 mb-4">Utiliza esta demo para descubrir la plataforma. User: <b>demo@picbook.es</b> and Password: <b>demo</b></p>
-                    <p class="text-white-75 mb-4">Contacta con nosotros para implementar una versión de Picbook personalizada y con funcionalidades adicionales.</p>
-                    <a class="btn btn-light btn-xl" @click="loginForm = true">Empezamos!</a>
+                    <p class="text-white-75 mb-4">{{ $t('Utiliza esta demo para descubrir la plataforma.') }}  User: <b>demo@picbook.es</b> and Password: <b>demo</b></p>
+                    <p class="text-white-75 mb-4">{{ $t('Contacta con nosotros para implementar una versión de Picbook personalizada y con funcionalidades adicionales.') }} </p>
+                    <a class="btn btn-light btn-xl" @click="loginForm = true">{{ $t('Empezamos!') }} </a>
 
                 </div>
             </div>
