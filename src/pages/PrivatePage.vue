@@ -200,6 +200,7 @@ export default defineComponent({
     // album images
     const album_images = ref([]);
     const showAlbumImages = function (albumPk, albumDescription) {
+      window.scrollTo(0, 0);
       spinner.value = true;
       // image store
       const albumImgStore = albumImageStore();
