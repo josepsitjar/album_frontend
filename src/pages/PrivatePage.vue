@@ -134,6 +134,7 @@
       class="close_button"
       @click="closeAlbumCarousel()"
     ></q-btn>
+    <DeleteImage :imageObj="getImage()" />
     <q-carousel
       transition-prev="slide-right"
       transition-next="slide-left"
@@ -155,6 +156,7 @@
       ></q-carousel-slide>
     </q-carousel>
   </q-dialog>
+  {{ slide }}
 </template>
 
 <script>
@@ -166,6 +168,7 @@ import VueSmoothScroll from "vue3-smooth-scroll";
 import GalleryComponent from "components/GalleryComponent.vue";
 import MapComponent from "components/MapComponent.vue";
 import UploadImageComponent from "components/UploadImageComponent.vue";
+import DeleteImage from "components/DeleteImage.vue";
 
 import { userAuthStore } from "stores/usr-auth";
 import { imageStore } from "stores/images.js";
@@ -177,7 +180,12 @@ import axios from "axios";
 
 export default defineComponent({
   name: "PrivatePage",
-  components: { GalleryComponent, MapComponent, UploadImageComponent },
+  components: {
+    GalleryComponent,
+    MapComponent,
+    UploadImageComponent,
+    DeleteImage,
+  },
   setup() {
     const url_server = process.env.PHOTOS;
 
@@ -254,6 +262,7 @@ export default defineComponent({
       window.scrollTo(0, top);
     },
     openAlbumCarousel(index) {
+      window.scrollTo(0, 0);
       this.carousel_album = true;
       this.slide = index;
     },
@@ -335,6 +344,12 @@ export default defineComponent({
         });
       }, 100);
     },
+    getImage() {
+      /**
+       * returns de image object according to current slide
+       */
+      return this.album_images[this.slide];
+    },
   },
   mounted() {},
 });
@@ -376,10 +391,15 @@ export default defineComponent({
 .close_button {
   position: absolute;
   top: 4vh;
-  right: 2vw;
+  /*right: 2vw*/
+  right: 20px;
   font-size: 10px;
   cursor: pointer;
   pointer-events: auto;
+}
+
+.deltete_button {
+  margin-right: 40px;
 }
 
 /* overwritte carrousel style*/

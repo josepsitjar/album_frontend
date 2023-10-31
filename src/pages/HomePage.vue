@@ -217,10 +217,35 @@
               </p>
             </div>
           </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+              <div class="mb-2"><i class="fa fa-map fa-3x"></i></div>
+              <h3 class="h4 mb-2">{{ $t("Localiza") }}</h3>
+              <p class="text-muted mb-0">
+                {{
+                  $t(
+                    "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo."
+                  )
+                }}
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+              <div class="mb-2"><i class="fa fa-helmet-safety fa-3x"></i></div>
+              <h3 class="h4 mb-2">{{ $t("Personaliza") }}</h3>
+              <p class="text-muted mb-0">
+                {{
+                  $t(
+                    "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo."
+                  )
+                }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-
     <!-- Portfolio-->
     <div id="portfolio">
       <div class="container-fluid p-0">

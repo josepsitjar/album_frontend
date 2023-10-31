@@ -47,13 +47,13 @@ module.exports = configure(function (ctx) {
       vueRouterMode: "hash", // available values: 'hash', 'history'
 
       env: {
-        PHOTOS: ctx.dev ? "http://127.0.0.1:8000/" : "https://www.picbook.es",
+        PHOTOS: ctx.dev ? "http://127.0.0.1:8000" : "https://www.picbook.es",
 
         API: ctx.dev
-          ? //  ? "http://127.0.0.1:8000/apidjrframework/"
-            //  : "http://127.0.0.1:8000/apidjrframework/",
-            "https://www.picbook.es/apidjrframework/"
-          : "https://www.picbook.es/apidjrframework/",
+          ? "http://127.0.0.1:8000/apidjrframework/"
+          : "http://127.0.0.1:8000/apidjrframework/",
+        //?  "https://www.picbook.es/apidjrframework/"
+        //: "https://www.picbook.es/apidjrframework/",
       },
 
       // transpile: false,
