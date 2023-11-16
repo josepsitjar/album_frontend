@@ -134,7 +134,10 @@
       class="close_button"
       @click="closeAlbumCarousel()"
     ></q-btn>
-    <DeleteImage :imageObj="getImage()" />
+    <DeleteImage
+      :imageObj="getImage()"
+      @closeCarousel="closeCarouselAfterDelete"
+    />
     <q-carousel
       transition-prev="slide-right"
       transition-next="slide-left"
@@ -268,6 +271,10 @@ export default defineComponent({
     },
     closeAlbumCarousel() {
       this.carousel_album = false;
+    },
+    closeCarouselAfterDelete() {
+      this.carousel_album = false;
+      this.album_images.splice(this.slide, 1);
     },
     logout() {
       this.$router.push("/private");

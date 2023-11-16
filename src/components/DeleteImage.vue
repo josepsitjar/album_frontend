@@ -4,19 +4,38 @@
     icon="fa fa-trash"
     color="black"
     class="close_button deltete_button"
-    @click="deleteImage"
+    @click="confirmDelete"
   ></q-btn>
 
   <!-- Prompt menu to delete an image -->
   <q-dialog v-model="confirmMessage" persistent>
     <q-card>
-      <q-card-section class="row">
-        <q-avatar icon="signal_wifi_off" color="primary" text-color="white" />
-        <span class="q-ml-sm">Image will be deleted. Are you sure?</span>
+      <q-card-section class="row items-center">
+        <div class="row" align="center">
+          <div class="col-2">
+            <q-avatar icon="warning" color="primary" text-color="white" />
+          </div>
+          <div class="col-10" align="left">
+            This mage will be definetly deleted. Are you sure?
+          </div>
+        </div>
       </q-card-section>
-      <q-card-actions align="right">
-        <q-btn flat label="Yes" color="primary" v-close-popup />
-        <q-btn flat label="No" color="primary" v-close-popup />
+
+      <q-card-actions>
+        <div class="row" align="center">
+          <div class="col">
+            <q-btn
+              flat
+              label="Yes"
+              color="primary"
+              v-close-popup
+              @click="deleteImage"
+            />
+          </div>
+          <div class="col">
+            <q-btn flat label="No" color="primary" v-close-popup />
+          </div>
+        </div>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -27,6 +46,7 @@ import { ref } from "vue";
 import { defineComponent } from "vue";
 import { storeToRefs } from "pinia";
 import { imageStore } from "stores/images.js";
+import { albumImageStore } from "stores/album_images.js";
 
 export default defineComponent({
   name: "DeleteImage",
@@ -36,7 +56,8 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  emits: ["closeCarousel"],
+  setup(props, { emit }) {
     /**
      * Delete Image
      * @param {*} event
@@ -44,20 +65,22 @@ export default defineComponent({
 
     const confirmMessage = ref(false);
 
-    const deleteImage = (event) => {
-      //console.log("deleting");
-      console.log(props.imageObj);
-      console.log(props.imageObj.pk);
-
+    const confirmDelete = function () {
       // Prompt menu
-      //confirmMessage.value = true;
+      confirmMessage.value = true;
+    };
 
+    const deleteImage = (event) => {
       // image store
       const imStore = imageStore();
       imStore.deleteImage(props.imageObj.pk);
+
+      // close carousel with emit
+      emit("closeCarousel");
     };
 
     return {
+      confirmDelete,
       deleteImage,
       confirmMessage,
     };
