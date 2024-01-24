@@ -8,7 +8,6 @@
     >
       <input
         type="file"
-        multiple
         name="file"
         id="fileInput"
         class="hidden-input"
@@ -17,10 +16,7 @@
         accept=".pdf,.jpg,.jpeg,.png"
       />
 
-      <label for="fileInput" class="file-label">
-        <div v-if="isDragging">Release to drop files here.</div>
-        <div v-else>Drop files here or <u>click here</u> to upload.</div>
-      </label>
+      <label for="title"><i class="text-grey drop-box">Drop an image</i></label>
 
       <!-- this code shows the uploaded files -->
       <div class="preview-container mt-4" v-if="files.length">
@@ -48,12 +44,11 @@
   </div>
 </template>
 
-<!--Documentatin drag and drop: https://blog.logrocket.com/customizing-drag-drop-file-uploading-vue/-->
 <script>
 import { dropImagesStore } from "stores/drop-images.js";
 
 export default {
-  name: "DropFile",
+  name: "DropSingleFile",
   setup() {},
   data() {
     return {
@@ -106,7 +101,10 @@ export default {
 
 <style>
 .dropzone-container {
-  padding: 4rem;
+  padding: 0rem;
+  padding-left: 1rem;
+  padding-top: 30px;
+  padding-bottom: 30px;
   background: #f7fafc;
   border: 1px solid #e2e8f0;
 }

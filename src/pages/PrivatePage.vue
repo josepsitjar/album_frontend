@@ -94,6 +94,9 @@
           <div class="col-lg-12 text-center">
             <h2 class="albumTitle">Album collection</h2>
             <br />
+            <!--Block to create new albums-->
+            <CreateAlbum />
+            <!--Block with existing albums-->
             <span v-for="album in albums" :key="album.id" class="albums">
               <q-img
                 :src="url_server + album.image"
@@ -172,6 +175,7 @@ import GalleryComponent from "components/GalleryComponent.vue";
 import MapComponent from "components/MapComponent.vue";
 import UploadImageComponent from "components/UploadImageComponent.vue";
 import DeleteImage from "components/DeleteImage.vue";
+import CreateAlbum from "components/CreateAlbum.vue";
 
 import { userAuthStore } from "stores/usr-auth";
 import { imageStore } from "stores/images.js";
@@ -188,6 +192,7 @@ export default defineComponent({
     MapComponent,
     UploadImageComponent,
     DeleteImage,
+    CreateAlbum,
   },
   setup() {
     const url_server = process.env.PHOTOS;
@@ -292,7 +297,7 @@ export default defineComponent({
         });
     },
     open_gallery() {
-      window.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
       this.gallery = true;
       this.album = false;
       this.gallery_album = false;
@@ -307,7 +312,7 @@ export default defineComponent({
       }, 100);
     },
     open_album() {
-      window.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
       this.gallery = false;
       this.gallery_album = false;
       this.album = true;
@@ -322,7 +327,7 @@ export default defineComponent({
       }, 100);
     },
     open_map() {
-      window.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
       this.gallery = false;
       this.gallery_album = false;
       this.album = false;
@@ -337,7 +342,7 @@ export default defineComponent({
       }, 100);
     },
     upload_data() {
-      window.scrollTo(0, 0);
+      //window.scrollTo(0, 0);
       this.gallery = false;
       this.gallery_album = false;
       this.album = false;

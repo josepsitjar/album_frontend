@@ -1,6 +1,5 @@
 <template>
   <!-- Image Gallery-->
-
   <section v-if="gallery" class="page-section" id="gallery" ref="gallery">
     <div class="container">
       <div class="row justify-content-center">
