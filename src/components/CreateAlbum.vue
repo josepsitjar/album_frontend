@@ -95,6 +95,8 @@
 <script>
 import { defineComponent, ref } from "vue";
 import DropSingleFile from "./DropSingleFile.vue";
+import { dropImagesStore } from "stores/drop-images.js";
+import { albumStore } from "stores/albums.js";
 import axios from "axios";
 
 export default defineComponent({
@@ -105,6 +107,7 @@ export default defineComponent({
     return {
       dialog: ref(false),
       maximizedToogle: ref(true),
+      files: [],
     };
   },
   methods: {
@@ -115,6 +118,11 @@ export default defineComponent({
       let data = new FormData();
       data.append("title", this.title);
       data.append("description", this.description);
+      data.append("user", localStorage.getItem("userId"));
+
+      // get album image
+      this.obtainFiles();
+      data.append("image", this.files[0]);
 
       var token = localStorage.getItem("token");
       axios
@@ -127,20 +135,26 @@ export default defineComponent({
           },
         })
         .then((response) => {
-          console.log("album created");
-          /*
-          this.messageSend = true;
-          document.getElementById("uploadImageForm").reset();
-          this.albums_list = "";
+          this.title = "";
           this.description = "";
-          this.sucess_message = true;
+          this.dialog = false;
           // remove images from box
-          this.$refs.dropFileComponent.removeAll();
-          */
+          this.$refs.dropSingleFileComponent.removeAll();
+
+          // refresh albums section from Private Page
+          const albStore = albumStore();
+          const { setAlbums } = albumStore();
+          const { getAlbums } = albumStore();
+          setAlbums();
         })
         .catch((error) => {
           console.log(error);
         });
+    },
+    obtainFiles() {
+      // drop-images store
+      const getImgStore = dropImagesStore();
+      this.files = getImgStore.getImages;
     },
   },
 });

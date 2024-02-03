@@ -65,7 +65,7 @@ export default {
     onChange() {
       this.files = [...this.$refs.file.files];
       console.log("files files");
-      console.log(this.files);
+      console.log(this.$refs.file.files);
       this.updateStore();
     },
     dragover(e) {

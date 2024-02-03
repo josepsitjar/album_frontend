@@ -166,7 +166,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineComponent } from "vue";
 import { storeToRefs } from "pinia";
 import VueSmoothScroll from "vue3-smooth-scroll";
@@ -209,11 +209,21 @@ export default defineComponent({
 
     const selectedAlbumDescription = ref();
     const albums = ref([]);
+    /*
     setTimeout(function () {
       albums.value = albStore.getAlbums;
     }, 1000);
+    */
+    watch(
+      () => albStore.getAlbums,
+      function () {
+        albums.value = albStore.getAlbums;
+      }
+    );
 
     // album images
+    const albumImgStore = albumImageStore();
+
     const album_images = ref([]);
     const showAlbumImages = function (albumPk, albumDescription) {
       window.scrollTo(0, 0);
@@ -224,11 +234,23 @@ export default defineComponent({
       setAlbumImages(albumPk);
 
       album_images.value = [];
+
+      watch(
+        () => albumImgStore.getImages,
+        function () {
+          selectedAlbumDescription.value = albumDescription;
+          album_images.value = albumImgStore.getImages;
+          spinner.value = false;
+        }
+      );
+
+      /*
       setTimeout(function () {
         selectedAlbumDescription.value = albumDescription;
         album_images.value = albumImgStore.getImages;
         spinner.value = false;
       }, 1000);
+      */
 
       this.gallery = false;
       this.album = false;

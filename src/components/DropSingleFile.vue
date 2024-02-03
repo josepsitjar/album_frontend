@@ -110,7 +110,7 @@ export default {
 }
 
 .hidden-input {
-  opacity: 0;
+  opacity: 1;
   overflow: hidden;
   position: absolute;
   width: 1px;

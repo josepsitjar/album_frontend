@@ -38,7 +38,6 @@ export const albumImageStore = defineStore("album_images", {
             },
           }
         ).then((response) => response.json());
-        console.log(this.images);
       } catch (error) {
         this.error = error;
       }
