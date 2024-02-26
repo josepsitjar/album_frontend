@@ -1,9 +1,9 @@
-import enUS from './en-US'
-import caES from './ca-ES'
-import esES from './es-ES'
+import enUS from "./en-US";
+import caES from "./ca-ES";
+import esES from "./es-ES";
 
 export default {
-  'en-US': enUS, 
-  'ca-ES': caES,
-  'es-ES': esES,
-}
+  "es-ES": esES,
+  "en-US": enUS,
+  "ca-ES": caES,
+};

@@ -172,7 +172,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "Almacena de forma segura todas las imágenes, con cópias de seguridad."
+                    "Almacena de forma segura todas las imágenes, con copias de seguridad."
                   )
                 }}
               </p>
@@ -185,7 +185,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "Cataloga tus fotos, añadiendo información complementaria: título, descripción, ubicación, ..."
+                    "Cataloga tus fotos, añadiendo información complementaria: título, descripción, localización, fecha y personas que aparecen en la imagen."
                   )
                 }}
               </p>
@@ -198,7 +198,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes: por álbum, localización, palabras clave, fecha..."
+                    "Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes."
                   )
                 }}
               </p>
@@ -211,7 +211,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo."
+                    "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família, o bien hazlas públicas para todo el mundo."
                   )
                 }}
               </p>
@@ -224,7 +224,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo."
+                    "Guarda la ubicación en la que se han tomado las imágenes y visualízalas en el mapa."
                   )
                 }}
               </p>
@@ -237,7 +237,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo."
+                    "La plataforma, desarrollada en software libre, permite la completa personalización."
                   )
                 }}
               </p>

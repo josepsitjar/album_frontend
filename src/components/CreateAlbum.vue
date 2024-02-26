@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import DropSingleFile from "./DropSingleFile.vue";
 import { dropImagesStore } from "stores/drop-images.js";
 import { albumStore } from "stores/albums.js";
@@ -132,12 +132,11 @@ export default defineComponent({
             "X-Requested-With": "XMLHttpRequest",
             "X-CSRFToken": token,
             "Content-Type": "multipart/form-data",
+            //Accept: "application/json",
+            //"Content-Type": "application/json",
           },
         })
         .then((response) => {
-          this.title = "";
-          this.description = "";
-          this.dialog = false;
           // remove images from box
           this.$refs.dropSingleFileComponent.removeAll();
 
@@ -146,6 +145,12 @@ export default defineComponent({
           const { setAlbums } = albumStore();
           const { getAlbums } = albumStore();
           setAlbums();
+
+          setTimeout(() => {
+            this.title = "";
+            this.description = "";
+            this.dialog = false;
+          }, "10");
         })
         .catch((error) => {
           console.log(error);

@@ -21,20 +21,26 @@ export default {
   "Empezamos!": "Start!",
   "Funcionalidades de Picbook": "Picbook functionalities",
   "Almacena tus fotografías": "Store your photos",
-  "Almacena de forma segura todas las imágenes, con cópias de seguridad.":
+  "Almacena de forma segura todas las imágenes, con copias de seguridad.":
     "A secure way to store your images, with backups",
   Catálogo: "Catalog",
-  "Cataloga tus fotos, añadiendo información complementaria: título, descripción, ubicación, ...":
+  "Cataloga tus fotos, añadiendo información complementaria: título, descripción, localización, fecha y personas que aparecen en la imagen.":
     "Catalog your photos, and add complementary information: title, description, location, ...",
   Visualiza: "Visualize",
-  "Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes: por álbum, localización, palabras clave, fecha...":
-    "Picbook will offer several ways to visualize and search your own images: filter by album, location, key words, dates...",
+  "Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes.":
+    "Picbook will offer several ways to visualize and search your own images.",
   Comparte: "Share",
-  "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo.":
-    "Share your images in a secure way with your clients, users, family, ... or make them public.",
+  "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família, o bien hazlas públicas para todo el mundo.":
+    "Share your images in a secure way with your clients, users and family, or make them public.",
   "Formulario de contacto": "Contact form",
   "¿Quieres una versión personalizada de Picbook para tu negocio u organización? ¿Quieres añadir funcionalidades? Envíanos un mensaje y nos pondremos en contacto contigo.":
     "Do you need a customized version of Picbook for your bussiness or organization? Do you need extra functionalities? Send us a message and we'll keep in contact with you.",
+  Localiza: "Map",
+  "Guarda la ubicación en la que se han tomado las imágenes y visualízalas en el mapa.":
+    "Store the coordinates where the images has been captured, and visualize them over a map.",
+  Personaliza: "Customize",
+  "La plataforma, desarrollada en software libre, permite la completa personalización.":
+    "The platform, with open source license, can be completely customized.",
   Nombre: "Name",
   "e-mail": "e-mail",
   "Introduce el e-mail.": "Add your e-mail",

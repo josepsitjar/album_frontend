@@ -52,8 +52,8 @@ module.exports = configure(function (ctx) {
         API: ctx.dev
           ? "http://127.0.0.1:8000/apidjrframework/"
           : "http://127.0.0.1:8000/apidjrframework/",
-        //? "https://www.picbook.es/apidjrframework/"
-        //:"https://www.picbook.es/apidjrframework/",
+        //?  "https://www.picbook.es/apidjrframework/"
+        //: "https://www.picbook.es/apidjrframework/",
       },
 
       // transpile: false,

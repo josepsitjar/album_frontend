@@ -21,18 +21,24 @@ export default {
   "Empezamos!": "Comencem",
   "Funcionalidades de Picbook": "Funcionalitats de Picbook",
   "Almacena tus fotografías": "Emmagatzema les teves fotografíes",
-  "Almacena de forma segura todas las imágenes, con cópias de seguridad.":
-    "Emmagatzema de forma segura totes les imatges, amb còpies de seguretat",
+  "Almacena de forma segura todas las imágenes, con copias de seguridad.":
+    "Emmagatzema de forma segura totes les imatges, amb còpies de seguretat.",
   Catálogo: "Catàleg",
-  "Cataloga tus fotos, añadiendo información complementaria: título, descripción, ubicación, ...":
-    "Cataloga les teves fotografíes, afegint infomració complementària: títol, descripció, ubicació, ...",
+  "Cataloga tus fotos, añadiendo información complementaria: título, descripción, localización, fecha y personas que aparecen en la imagen.":
+    "Cataloga les teves fotografíes, afegint informació complementària: títol, descripció, ubicació, data i persones que apareixen a la imatge.",
   Visualiza: "Visualitza",
-  "Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes: por álbum, localización, palabras clave, fecha...":
-    "Picbook t'oferirà diferents formes de visualitzar i cercar les teves imatges: filtra per àlbum, localització, paraules clau, dates, ...",
+  "Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes.":
+    "Picbook t'oferirà diferents formes de visualitzar i cercar les teves imatges.",
   Comparte: "Comparteix",
-  "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família... o bién házlas públicas para todo el mundo.":
-    "Comparteix les imatges de forma segura amb les persones que vulguis: clients, usuaris, família... o bé fes-les públiques per a tothom.",
+  "Comparte las imágenes de forma segura con las personas que quieras: clientes, usuarios, família, o bien hazlas públicas para todo el mundo.":
+    "Comparteix les imatges de forma segura amb les persones que vulguis: clients, usuaris, família, o bé fes-les públiques per a tothom.",
   "Formulario de contacto": "Formulari de contacte",
+  Localiza: "Localitza",
+  "Guarda la ubicación en la que se han tomado las imágenes y visualízalas en el mapa.":
+    "Desa la ubicació en la qual s'han capturat les imatges i visualitza-les al mapa.",
+  Personaliza: "Personalitza",
+  "La plataforma, desarrollada en software libre, permite la completa personalización.":
+    "La plataforma, amb llicència de codi lliure, permet la completa personalització",
   "¿Quieres una versión personalizada de Picbook para tu negocio u organización? ¿Quieres añadir funcionalidades? Envíanos un mensaje y nos pondremos en contacto contigo.":
     "Necessites una versió personalitzada de Picbook per al teu negoci o organització? Vols afegir funcionalitats? Envia'ns un missatge i ens posarem en contacte amb tu.",
   Nombre: "Nom",

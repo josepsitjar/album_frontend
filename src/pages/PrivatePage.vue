@@ -226,7 +226,12 @@ export default defineComponent({
 
     const album_images = ref([]);
     const showAlbumImages = function (albumPk, albumDescription) {
-      window.scrollTo(0, 0);
+      setTimeout(function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }, 100);
       spinner.value = true;
       // image store
       const albumImgStore = albumImageStore();
