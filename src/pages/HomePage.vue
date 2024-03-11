@@ -7,7 +7,7 @@
     >
       <div class="container px-4 px-lg-5">
         <a class="navbar-brand link_menu" @click="scrollMeTo('initial')"
-          >Picbook</a
+          >KeepYourPhoto</a
         >
         <button
           class="navbar-toggler navbar-toggler-right"
@@ -24,7 +24,7 @@
           <ul class="navbar-nav ms-auto my-2 my-lg-0">
             <li class="nav-item">
               <a class="nav-link link_menu" @click="scrollMeTo('about')"
-                >Picbook</a
+                >KeepYourPhoto</a
               >
             </li>
             <li class="nav-item">
@@ -112,7 +112,7 @@
             <p class="text-white-75 mb-5">
               {{
                 $t(
-                  "Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma Picbook."
+                  "Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma."
                 )
               }}
             </p>
@@ -135,18 +135,18 @@
             <p class="text-white-75 mb-4">
               {{
                 $t(
-                  "Picbook cuenta con todas las funcionalidades que necesitas para almacenar, catalogar, gestionar y visualizar tus fotografías de una forma simple y eficiente. Picbook es una plataforma desarrollada con código abierto, que te ayudará a catalogar y visualizar todos tus álbumes de fotos."
+                  "KeepYourPhoto cuenta con todas las funcionalidades que necesitas para almacenar, catalogar, gestionar y visualizar tus fotografías de una forma simple y eficiente. KeepYourPhoto es una plataforma desarrollada con código abierto, que te ayudará a catalogar y visualizar todos tus álbumes de fotos."
                 )
               }}
             </p>
             <p class="text-white-75 mb-4">
               {{ $t("Utiliza esta demo para descubrir la plataforma.") }} User:
-              <b>demo@picbook.es</b> and Password: <b>demo</b>
+              <b>demo@keepyourphoto.com</b> and Password: <b>demo</b>
             </p>
             <p class="text-white-75 mb-4">
               {{
                 $t(
-                  "Contacta con nosotros para implementar una versión de Picbook personalizada y con funcionalidades adicionales."
+                  "Contacta con nosotros para implementar una versión de KeepYourPhoto personalizada y con funcionalidades adicionales."
                 )
               }}
             </p>
@@ -161,7 +161,7 @@
     <section class="page-section" id="services" ref="services">
       <div class="container px-4 px-lg-5">
         <h2 class="text-center mt-0">
-          {{ $t("Funcionalidades de Picbook") }}
+          {{ $t("Funcionalidades de KeepYourPhoto") }}
         </h2>
         <hr class="divider" />
         <div class="row gx-4 gx-lg-5">
@@ -198,7 +198,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "Picbook te ofrecerá diferentes formas de visualizar y buscar tus imágenes."
+                    "KeepYourPhoto te ofrecerá diferentes formas de visualizar y buscar tus imágenes."
                   )
                 }}
               </p>

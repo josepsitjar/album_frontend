@@ -2,6 +2,26 @@
   <!-- Image Gallery-->
   <section v-if="gallery" class="page-section" id="gallery" ref="gallery">
     <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <!-- search bar -->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              v-model="description"
+              name="description"
+              id="description"
+              type="text"
+              placeholder="Enter a description"
+              data-sb-validations="required"
+            />
+            <label for="description"
+              ><i class="text-grey">Gallery filter</i></label
+            >
+          </div>
+          <!--end search bar-->
+        </div>
+      </div>
       <div class="row justify-content-center">
         <div class="col-lg-12 text-center">
           <h2 class="galleryTitle">Image Gallery</h2>
@@ -134,7 +154,7 @@ export default defineComponent({
 }
 
 .galleryTitle {
-  font-family: "Tangerine", serif;
-  font-size: 48px;
+  font-family: "Karla Variable", "Fallback Outline";
+  font-size: 28px;
 }
 </style>

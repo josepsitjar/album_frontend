@@ -311,7 +311,7 @@ export default defineComponent({
 }
 
 .mapTitle {
-  font-family: "Tangerine", serif;
-  font-size: 48px;
+  font-family: "Karla Variable", "Fallback Outline";
+  font-size: 28px;
 }
 </style>

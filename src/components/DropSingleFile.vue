@@ -16,7 +16,11 @@
         accept=".pdf,.jpg,.jpeg,.png"
       />
 
-      <label for="title"><i class="text-grey drop-box">Drop an image</i></label>
+      <label for="fileInput">
+        <i class="text-grey drop-box"
+          >Drop file here or <u>click here</u> to upload.</i
+        >
+      </label>
 
       <!-- this code shows the uploaded files -->
       <div class="preview-container mt-4" v-if="files.length">
@@ -140,5 +144,9 @@ export default {
   border-radius: 5px;
   border: 1px solid #a2a2a2;
   background-color: #a2a2a2;
+}
+
+.drop-box {
+  cursor: pointer;
 }
 </style>

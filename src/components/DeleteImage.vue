@@ -9,7 +9,7 @@
 
   <!-- Prompt menu to delete an image -->
   <q-dialog v-model="confirmMessage" persistent>
-    <q-card>
+    <q-card style="overflow: hidden">
       <q-card-section class="row items-center">
         <div class="row" align="center">
           <div class="col-2">

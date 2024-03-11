@@ -6,7 +6,7 @@
       id="mainNavPrivate"
     >
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand">Picbook</a>
+        <a class="navbar-brand">KeepYourPhoto</a>
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
@@ -108,6 +108,7 @@
                 <div class="absolute-full text-subtitle1 flex flex-center">
                   {{ album.description }}
                 </div>
+                <AlbumMenu :albumId="album.pk" />
               </q-img>
             </span>
           </div>
@@ -176,6 +177,7 @@ import MapComponent from "components/MapComponent.vue";
 import UploadImageComponent from "components/UploadImageComponent.vue";
 import DeleteImage from "components/DeleteImage.vue";
 import CreateAlbum from "components/CreateAlbum.vue";
+import AlbumMenu from "components/AlbumMenu.vue";
 
 import { userAuthStore } from "stores/usr-auth";
 import { imageStore } from "stores/images.js";
@@ -193,6 +195,7 @@ export default defineComponent({
     UploadImageComponent,
     DeleteImage,
     CreateAlbum,
+    AlbumMenu,
   },
   setup() {
     const url_server = process.env.PHOTOS;
@@ -225,7 +228,7 @@ export default defineComponent({
     const albumImgStore = albumImageStore();
 
     const album_images = ref([]);
-    const showAlbumImages = function (albumPk, albumDescription) {
+    function showAlbumImages(albumPk, albumDescription) {
       setTimeout(function () {
         window.scrollTo({
           top: 0,
@@ -260,7 +263,7 @@ export default defineComponent({
       this.gallery = false;
       this.album = false;
       this.gallery_album = true;
-    };
+    }
 
     // start loading map data
     // image feature
@@ -452,8 +455,15 @@ export default defineComponent({
   overflow: hidden;
 }
 
+/*
 .albumTitle {
   font-family: "Tangerine", serif;
   font-size: 48px;
+}
+*/
+
+.albumTitle {
+  font-family: "Karla Variable", "Fallback Outline";
+  font-size: 28px;
 }
 </style>

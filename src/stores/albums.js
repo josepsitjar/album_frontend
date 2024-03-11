@@ -37,5 +37,29 @@ export const albumStore = defineStore("albums", {
         this.error = error;
       }
     },
+    async deleteAlbum(albumPk) {
+      try {
+        var token = localStorage.getItem("token");
+
+        await axios
+          .delete(process.env.API + "albums/" + albumPk + "", {
+            data: { pk: albumPk },
+            method: "DELETE",
+            credentials: "same-origin",
+            headers: {
+              Authorization: "Token " + token + "",
+              "X-Requested-With": "XMLHttpRequest",
+              "X-CSRFToken": token,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          })
+          .then((response) => {
+            this.setAlbums();
+          });
+      } catch (error) {
+        this.error = error;
+      }
+    },
   },
 });

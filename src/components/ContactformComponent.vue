@@ -9,7 +9,7 @@
           <p class="text-muted mb-5">
             {{
               $t(
-                "¿Quieres una versión personalizada de Picbook para tu negocio u organización? ¿Quieres añadir funcionalidades? Envíanos un mensaje y nos pondremos en contacto contigo."
+                "¿Quieres una versión personalizada de KeepYourPhoto para tu negocio u organización? ¿Quieres añadir funcionalidades? Envíanos un mensaje y nos pondremos en contacto contigo."
               )
             }}
           </p>
