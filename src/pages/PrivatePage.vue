@@ -212,11 +212,7 @@ export default defineComponent({
 
     const selectedAlbumDescription = ref();
     const albums = ref([]);
-    /*
-    setTimeout(function () {
-      albums.value = albStore.getAlbums;
-    }, 1000);
-    */
+
     watch(
       () => albStore.getAlbums,
       function () {
@@ -251,14 +247,6 @@ export default defineComponent({
           spinner.value = false;
         }
       );
-
-      /*
-      setTimeout(function () {
-        selectedAlbumDescription.value = albumDescription;
-        album_images.value = albumImgStore.getImages;
-        spinner.value = false;
-      }, 1000);
-      */
 
       this.gallery = false;
       this.album = false;
@@ -463,7 +451,8 @@ export default defineComponent({
 */
 
 .albumTitle {
-  font-family: "Karla Variable", "Fallback Outline";
-  font-size: 28px;
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 23px;
 }
 </style>

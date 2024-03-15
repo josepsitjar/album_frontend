@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-12 text-center">
-          <h2 class="mapTitle">Upload your images</h2>
+          <h2 class="title-upload">Upload your images</h2>
           <br />
           <!--Form -->
           <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -262,5 +262,11 @@ export default defineComponent({
 <style>
 #upload_section {
   margin-top: 50px;
+}
+
+.title-upload {
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 23px;
 }
 </style>

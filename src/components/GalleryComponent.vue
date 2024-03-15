@@ -2,30 +2,16 @@
   <!-- Image Gallery-->
   <section v-if="gallery" class="page-section" id="gallery" ref="gallery">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <!-- search bar -->
-          <div class="form-floating mb-3">
-            <input
-              class="form-control"
-              v-model="description"
-              name="description"
-              id="description"
-              type="text"
-              placeholder="Enter a description"
-              data-sb-validations="required"
-            />
-            <label for="description"
-              ><i class="text-grey">Gallery filter</i></label
-            >
-          </div>
-          <!--end search bar-->
-        </div>
-      </div>
+      <div class="row"></div>
       <div class="row justify-content-center">
         <div class="col-lg-12 text-center">
           <h2 class="galleryTitle">Image Gallery</h2>
           <br />
+        </div>
+        <!-- search bar -->
+        <SearchPhoto />
+        <!--end search bar-->
+        <div class="col-lg-12 text-center">
           <span v-for="(img, index) in imgs" :key="img.id" class="images">
             <q-img
               :src="url_server + img.image"
@@ -89,13 +75,15 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineComponent } from "vue";
 import { storeToRefs } from "pinia";
 import { imageStore } from "stores/images.js";
+import SearchPhoto from "./SearchPhoto.vue";
 
 export default defineComponent({
   name: "GalleryComponent",
+  components: { SearchPhoto },
   setup() {
     const url_server = process.env.PHOTOS;
 
@@ -106,10 +94,20 @@ export default defineComponent({
     setImages();
 
     const imgs = ref([]);
+    /*
     setTimeout(function () {
       imgs.value = imgStore.getImages;
       spinner.value = false;
     }, 1000);
+    */
+
+    watch(
+      () => imgStore.getImages,
+      function () {
+        imgs.value = imgStore.getImages;
+        spinner.value = false;
+      }
+    );
 
     return {
       url_server,
@@ -154,7 +152,8 @@ export default defineComponent({
 }
 
 .galleryTitle {
-  font-family: "Karla Variable", "Fallback Outline";
-  font-size: 28px;
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 23px;
 }
 </style>
