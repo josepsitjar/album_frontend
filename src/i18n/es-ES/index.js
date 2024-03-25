@@ -6,8 +6,8 @@ export default {
   success: "Acción con éxito en español",
   "Una plataforma para almacenar, organizar y visualizar tus fotos.":
     "Una plataforma para almacenar, organizar y visualizar tus fotos.",
-  "Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma.":
-    "Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma.",
+  "Almacena, cataloga y visualiza tus fotos, y compártelas a través de la plataforma.":
+    "Almacena, cataloga y visualiza tus fotos, y compártelas a través de la plataforma.",
   Funcionalidades: "Funcionalidades",
   Contacto: "Contacto",
   "Ver más": "Ver más",
@@ -38,8 +38,8 @@ export default {
   "Guarda la ubicación en la que se han tomado las imágenes y visualízalas en el mapa.":
     "Guarda la ubicación en la que se han tomado las imágenes y visualízalas en el mapa.",
   Personaliza: "Personaliza",
-  "La plataforma, desarrollada en software libre, permite la completa personalización.":
-    "La plataforma, desarrollada en software libre, permite la completa personalización.",
+  "Podemos desarrollar una personalización completa de la plataforma.":
+    "Podemos desarrollar una personalización completa de la plataforma.",
   "Formulario de contacto": "Formulario de contacto",
   "¿Quieres una versión personalizada de KeepYourPhoto para tu negocio u organización? ¿Quieres añadir funcionalidades? Envíanos un mensaje y nos pondremos en contacto contigo.":
     "¿Quieres una versión personalizada de KeepYourPhoto para tu negocio u organización? ¿Quieres añadir funcionalidades? Envíanos un mensaje y nos pondremos en contacto contigo.",

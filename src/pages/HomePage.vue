@@ -112,7 +112,7 @@
             <p class="text-white-75 mb-5">
               {{
                 $t(
-                  "Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma."
+                  "Almacena, cataloga y visualiza tus fotos, y compártelas a través de la plataforma."
                 )
               }}
             </p>
@@ -237,7 +237,7 @@
               <p class="text-muted mb-0">
                 {{
                   $t(
-                    "La plataforma, desarrollada en software libre, permite la completa personalización."
+                    "Podemos desarrollar una personalización completa de la plataforma."
                   )
                 }}
               </p>

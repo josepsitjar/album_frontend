@@ -6,8 +6,8 @@ export default {
   success: "Acció amb èxit",
   "Una plataforma para almacenar, organizar y visualizar tus fotos.":
     "Una plataforma per a emmagatzemar, organitzar i visualitzar les teves fotos.",
-  "Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma.":
-    "Emmagatzema, cataloga i visualitza les fotos del teu negoci o organització, i comparteix-les a través de la plataforma",
+  "Almacena, cataloga y visualiza tus fotos, y compártelas a través de la plataforma.":
+    "Emmagatzema, cataloga i visualitza les teves imatges i comparteix-les a través de la plataforma",
   Funcionalidades: "Funcionalitats",
   Contacto: "Contacte",
   "Ver más": "Més info",
@@ -37,8 +37,8 @@ export default {
   "Guarda la ubicación en la que se han tomado las imágenes y visualízalas en el mapa.":
     "Desa la ubicació en la qual s'han capturat les imatges i visualitza-les al mapa.",
   Personaliza: "Personalitza",
-  "La plataforma, desarrollada en software libre, permite la completa personalización.":
-    "La plataforma, amb llicència de codi lliure, permet la completa personalització",
+  "Podemos desarrollar una personalización completa de la plataforma.":
+    "Podem desenvolupar una versió personalitzada de la plataforma.",
   "¿Quieres una versión personalizada de KeepYourPhoto para tu negocio u organización? ¿Quieres añadir funcionalidades? Envíanos un mensaje y nos pondremos en contacto contigo.":
     "Necessites una versió personalitzada de KeepYourPhoto per al teu negoci o organització? Vols afegir funcionalitats? Envia'ns un missatge i ens posarem en contacte amb tu.",
   Nombre: "Nom",

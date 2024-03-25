@@ -6,8 +6,8 @@ export default {
   success: "Action was successful",
   "Una plataforma para almacenar, organizar y visualizar tus fotos.":
     "A plattform to store, organize and visualize your photos.",
-  "Almacena, cataloga y visualiza las fotos de tu negocio u organización, y compártelas a través de la plataforma.":
-    "Store, catalog and visualize photos from your bussiness or organization, and share them through.",
+  "Almacena, cataloga y visualiza tus fotos, y compártelas a través de la plataforma.":
+    "Store, catalog and visualize your photos and share them through.",
   Funcionalidades: "Functionalities",
   Contacto: "Contact",
   "Ver más": "More info",
@@ -39,8 +39,8 @@ export default {
   "Guarda la ubicación en la que se han tomado las imágenes y visualízalas en el mapa.":
     "Store the coordinates where the images has been captured, and visualize them over a map.",
   Personaliza: "Customize",
-  "La plataforma, desarrollada en software libre, permite la completa personalización.":
-    "The platform, with open source license, can be completely customized.",
+  "Podemos desarrollar una personalización completa de la plataforma.":
+    "We can develope a customized version of the platform.",
   Nombre: "Name",
   "e-mail": "e-mail",
   "Introduce el e-mail.": "Add your e-mail",
