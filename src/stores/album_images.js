@@ -21,7 +21,7 @@ export const albumImageStore = defineStore("album_images", {
         //this.images = await fetch('https://www.picbook.es/apidjrframework/photos/?format=json&album='+index+'&user='+userId+'', {
         this.images = await fetch(
           process.env.API +
-            "photos/?format=json&album=" +
+            "photos/?format=json&querytext=null&album=" +
             index +
             "&user=" +
             userId +

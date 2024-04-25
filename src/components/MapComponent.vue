@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineComponent } from "vue";
 import { storeToRefs } from "pinia";
 
@@ -74,11 +74,16 @@ export default defineComponent({
     // open images on popup
     const images = ref();
     const carousel_images = ref(false);
-    const openCarousel = function (img) {
+
+    /*
+    const openCarousel = function () {
       images.value = null;
-      images.value = "https://www.picbook.es/uploads/" + img;
+      //images.value = img;
+      images.value = imgLocStore.getImage;
+      console.log(images.value);
       carousel_images.value = true;
     };
+    */
 
     onMounted(() => {
       const initialState = { lng: 0.0, lat: 0.0, zoom: 1 };
@@ -244,10 +249,18 @@ export default defineComponent({
         // description HTML from its properties.
         map.value.on("click", "unclustered-point", function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
-          //var mag = e.features[0].properties.mag;
-          var img = e.features[0].properties.photo;
+          var photo_id = e.features[0].properties.photo_pk;
+          imgLocStore.setImage(photo_id);
 
-          openCarousel(img);
+          watch(
+            () => imgLocStore.getImage,
+            function () {
+              var s3_image = imgLocStore.getImage;
+              images.value = s3_image[0].image;
+            }
+          );
+
+          carousel_images.value = true;
 
           // Ensure that if the map is zoomed out such that
           // multiple copies of the feature are visible, the
@@ -282,7 +295,7 @@ export default defineComponent({
       map,
       mapContainer,
       imgLocStore,
-      openCarousel,
+      //openCarousel,
       images,
     };
   },

@@ -71,7 +71,7 @@
               class="images"
             >
               <q-img
-                :src="url_server + img.image"
+                :src="img.image"
                 spinner-color="white"
                 style="height: 240px; max-width: 250px"
                 fit="cover"
@@ -98,8 +98,9 @@
             <CreateAlbum />
             <!--Block with existing albums-->
             <span v-for="album in albums" :key="album.id" class="albums">
+              <!--:src="url_server + album.image"-->
               <q-img
-                :src="url_server + album.image"
+                :src="album.image"
                 spinner-color="white"
                 style="height: 440px; max-width: 350px"
                 fit="cover"
@@ -159,7 +160,7 @@
         v-for="(img, index) in album_images"
         :key="img.id"
         :name="index"
-        :img-src="url_server + img.image"
+        :img-src="img.image"
       ></q-carousel-slide>
     </q-carousel>
   </q-dialog>
@@ -308,7 +309,7 @@ export default defineComponent({
       this.authStore.noAuthenticated;
 
       axios
-        .get("https://www.picbook.es/apidjrframework/api-auth/logout/")
+        .get("https://www.keepyourphoto.com/apidjrframework/api-auth/logout/")
         .then((response) => {})
         .catch((error) => {
           console.log(error);

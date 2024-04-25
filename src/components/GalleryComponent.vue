@@ -14,7 +14,7 @@
         <div class="col-lg-12 text-center">
           <span v-for="(img, index) in imgs" :key="img.id" class="images">
             <q-img
-              :src="url_server + img.image"
+              :src="img.image"
               spinner-color="white"
               style="height: 240px; max-width: 250px"
               fit="cover"
@@ -68,7 +68,7 @@
         v-for="(img, index) in imgs"
         :key="img.id"
         :name="index"
-        :img-src="url_server + img.image"
+        :img-src="img.image"
       ></q-carousel-slide>
     </q-carousel>
   </q-dialog>

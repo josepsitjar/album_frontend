@@ -47,11 +47,13 @@ module.exports = configure(function (ctx) {
       vueRouterMode: "hash", // available values: 'hash', 'history'
 
       env: {
-        PHOTOS: ctx.dev ? "http://127.0.0.1:8000" : "https://www.picbook.es",
+        PHOTOS: ctx.dev
+          ? "http://127.0.0.1:8000"
+          : "https://www.keepyourphoto.com",
 
         API: ctx.dev
           ? "http://127.0.0.1:8000/apidjrframework/"
-          : "https://www.picbook.es/apidjrframework/",
+          : "https://www.keepyourphoto.com/apidjrframework/",
         //?  "https://www.picbook.es/apidjrframework/"
         //: "https://www.picbook.es/apidjrframework/",
       },
@@ -107,7 +109,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ["Meta"],
     },
 
     // animations: 'all', // --- includes all animations

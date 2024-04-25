@@ -12,7 +12,7 @@ export default {
   Contacto: "Contact",
   "Ver más": "More info",
   "Tenemos lo que necesitas!": "All what you need!",
-  "KeepYourPhoto cuenta con todas las funcionalidades que necesitas para almacenar, catalogar, gestionar y visualizar tus fotografías de una forma simple y eficiente. Picbook es una plataforma desarrollada con código abierto, que te ayudará a catalogar y visualizar todos tus álbumes de fotos.":
+  "KeepYourPhoto cuenta con todas las funcionalidades que necesitas para almacenar, catalogar, gestionar y visualizar tus fotografías de una forma simple y eficiente. KeepYourPhoto es una plataforma desarrollada con código abierto, que te ayudará a catalogar y visualizar todos tus álbumes de fotos.":
     "KeepYourPhoto includes all the functionalities to store, catalog, manage and visualize your photos, in a simple and efficient way. KeepYourPhoto is an opensource platform, and will help you to visualize and catalog your albums.",
   "Utiliza esta demo para descubrir la plataforma.":
     "Use this demo to discover the platform.",
