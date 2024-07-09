@@ -157,6 +157,7 @@ import axios from "axios";
 
 import { albumStore } from "stores/albums.js";
 import { dropImagesStore } from "stores/drop-images.js";
+import { userInfo } from "stores/user-info.js";
 import DropFile from "./DropFile.vue";
 
 export default defineComponent({
@@ -206,6 +207,12 @@ export default defineComponent({
     };
   },
   methods: {
+    checkUsrSpace() {
+      // user info store
+      alert("ckeck user space");
+      const userInfStore = userInfo();
+      const contractedSize = userInfStore.getContractedSize;
+    },
     submitFormUploadImage(e) {
       this.spinner = true; // start spinner
       this.sucess_message = false;

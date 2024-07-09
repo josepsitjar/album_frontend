@@ -14,7 +14,7 @@
         <div class="col-lg-12 text-center">
           <span v-for="(img, index) in imgs" :key="img.id" class="images">
             <q-img
-              :src="img.image"
+              :src="img.thumbnail"
               spinner-color="white"
               style="height: 240px; max-width: 250px"
               fit="cover"

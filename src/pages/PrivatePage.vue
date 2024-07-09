@@ -71,7 +71,7 @@
               class="images"
             >
               <q-img
-                :src="img.image"
+                :src="img.thumbnail"
                 spinner-color="white"
                 style="height: 240px; max-width: 250px"
                 fit="cover"
