@@ -82,10 +82,7 @@ export default {
   },
   setup(props) {
     const confirmMessage = ref(false);
-    function openMenu(evt) {
-      console.log(evt);
-      console.log(this);
-    }
+    function openMenu(evt) {}
     function confirm_delete_message() {
       // Prompt menu
       confirmMessage.value = true;

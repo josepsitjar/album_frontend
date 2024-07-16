@@ -11,21 +11,33 @@
         <!-- search bar -->
         <SearchPhoto />
         <!--end search bar-->
-        <div class="col-lg-12 text-center">
-          <span v-for="(img, index) in imgs" :key="img.id" class="images">
-            <q-img
-              :src="img.thumbnail"
-              spinner-color="white"
-              style="height: 240px; max-width: 250px"
-              fit="cover"
-              @click="openCarousel(index)"
-            >
-              <div class="absolute-bottom text-subtitle1 text-center">
-                {{ img.description }}
-              </div>
-            </q-img>
-          </span>
-        </div>
+        <q-infinite-scroll @load="onLoad" :offset="10">
+          <div class="col-lg-12 text-center">
+            <span v-for="(img, index) in imgs" :key="img.id" class="images">
+              <q-img
+                :src="img.thumbnail"
+                spinner-color="white"
+                style="height: 240px; max-width: 250px"
+                fit="cover"
+                @click="openCarousel(index)"
+              >
+                <div class="absolute-bottom text-subtitle1 text-center">
+                  {{ img.description }}
+                </div>
+              </q-img>
+            </span>
+          </div>
+          <template v-slot:loading>
+            <div class="row justify-center q-my-md">
+              <q-spinner-dots
+                v-if="nextImages == true"
+                color="primary"
+                size="12px"
+                style="margin-top: 30px"
+              />
+            </div>
+          </template>
+        </q-infinite-scroll>
       </div>
     </div>
   </section>
@@ -94,6 +106,8 @@ export default defineComponent({
     setImages();
 
     const imgs = ref([]);
+
+    const nextImages = ref(true);
     /*
     setTimeout(function () {
       imgs.value = imgStore.getImages;
@@ -104,10 +118,23 @@ export default defineComponent({
     watch(
       () => imgStore.getImages,
       function () {
+        // get images from imgStore
         imgs.value = imgStore.getImages;
         spinner.value = false;
       }
     );
+
+    function onLoad(index, done) {
+      let nextValue = imgStore.getNext;
+      if (nextValue != null) {
+        setTimeout(() => {
+          imgStore.loadMoreImages();
+          done();
+        }, 2000);
+      } else {
+        nextImages.value = false;
+      }
+    }
 
     return {
       url_server,
@@ -116,6 +143,8 @@ export default defineComponent({
       gallery: ref(true),
       carousel: ref(false),
       slide: ref(1),
+      onLoad,
+      nextImages,
     };
   },
   methods: {

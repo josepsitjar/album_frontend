@@ -66,7 +66,7 @@
             <h2 class="albumTitle">{{ selectedAlbumDescription }}</h2>
             <br />
             <span
-              v-for="(img, index) in album_images"
+              v-for="(img, index) in album_images.results"
               :key="img.id"
               class="images"
             >
@@ -157,7 +157,7 @@
       height="80vh"
     >
       <q-carousel-slide
-        v-for="(img, index) in album_images"
+        v-for="(img, index) in album_images.results"
         :key="img.id"
         :name="index"
         :img-src="img.image"
@@ -298,7 +298,7 @@ export default defineComponent({
     },
     closeCarouselAfterDelete() {
       this.carousel_album = false;
-      this.album_images.splice(this.slide, 1);
+      this.album_images.results.splice(this.slide, 1);
     },
     logout() {
       this.$router.push("/private");
@@ -379,7 +379,8 @@ export default defineComponent({
       /**
        * returns de image object according to current slide
        */
-      return this.album_images[this.slide];
+      console.log(this.album_images.results);
+      return this.album_images.results[this.slide];
     },
   },
   mounted() {},
