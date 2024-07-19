@@ -27,6 +27,7 @@
               </q-img>
             </span>
           </div>
+
           <template v-slot:loading>
             <div class="row justify-center q-my-md">
               <q-spinner-dots
@@ -37,6 +38,19 @@
               />
             </div>
           </template>
+
+          <div class="col-lg-12 text-center">
+            <q-chip
+              style="height: 3em; margin-top: 50px"
+              color="secondary"
+              text-color="white"
+            >
+              <div v-if="nextImages == true">
+                Scroll down to load more images.
+              </div>
+              <div v-if="nextImages == false">No more images to load.</div>
+            </q-chip>
+          </div>
         </q-infinite-scroll>
       </div>
     </div>

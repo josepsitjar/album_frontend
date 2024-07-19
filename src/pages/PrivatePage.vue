@@ -65,23 +65,47 @@
           <div class="col-lg-12 text-center">
             <h2 class="albumTitle">{{ selectedAlbumDescription }}</h2>
             <br />
-            <span
-              v-for="(img, index) in album_images.results"
-              :key="img.id"
-              class="images"
-            >
-              <q-img
-                :src="img.thumbnail"
-                spinner-color="white"
-                style="height: 240px; max-width: 250px"
-                fit="cover"
-                @click="openAlbumCarousel(index)"
+            <q-infinite-scroll @load="onLoad" :offset="10">
+              <span
+                v-for="(img, index) in album_images"
+                :key="img.id"
+                class="images"
               >
-                <div class="absolute-bottom text-subtitle1 text-center">
-                  {{ img.description }}
+                <q-img
+                  :src="img.thumbnail"
+                  spinner-color="white"
+                  style="height: 240px; max-width: 250px"
+                  fit="cover"
+                  @click="openAlbumCarousel(index)"
+                >
+                  <div class="absolute-bottom text-subtitle1 text-center">
+                    {{ img.description }}
+                  </div>
+                </q-img>
+              </span>
+              <template v-slot:loading>
+                <div class="row justify-center q-my-md">
+                  <q-spinner-dots
+                    v-if="nextImages == true"
+                    color="primary"
+                    size="12px"
+                    style="margin-top: 30px"
+                  />
                 </div>
-              </q-img>
-            </span>
+              </template>
+              <div class="col-lg-12 text-center">
+                <q-chip
+                  style="height: 3em; margin-top: 50px"
+                  color="secondary"
+                  text-color="white"
+                >
+                  <div v-if="nextImages == true">
+                    Scroll down to load more images.
+                  </div>
+                  <div v-if="nextImages == false">No more images to load.</div>
+                </q-chip>
+              </div>
+            </q-infinite-scroll>
           </div>
         </div>
       </div>
@@ -157,7 +181,7 @@
       height="80vh"
     >
       <q-carousel-slide
-        v-for="(img, index) in album_images.results"
+        v-for="(img, index) in album_images"
         :key="img.id"
         :name="index"
         :img-src="img.image"
@@ -205,6 +229,8 @@ export default defineComponent({
 
     const authStore = userAuthStore();
     const isAuthenticated = storeToRefs(authStore);
+
+    const nextImages = ref(true);
 
     // album store
     const albStore = albumStore();
@@ -260,6 +286,18 @@ export default defineComponent({
     const { setFeature } = imagesLocationStore();
     setFeature();
 
+    function onLoad(index, done) {
+      let nextValue = albumImgStore.getNext;
+      if (nextValue != null) {
+        setTimeout(() => {
+          albumImgStore.loadMoreImages();
+          done();
+        }, 2000);
+      } else {
+        nextImages.value = false;
+      }
+    }
+
     return {
       url_server,
       spinner,
@@ -277,6 +315,8 @@ export default defineComponent({
       albums,
       album_images,
       showAlbumImages,
+      onLoad,
+      nextImages,
     };
   },
   data() {
@@ -298,7 +338,7 @@ export default defineComponent({
     },
     closeCarouselAfterDelete() {
       this.carousel_album = false;
-      this.album_images.results.splice(this.slide, 1);
+      this.album_images.splice(this.slide, 1);
     },
     logout() {
       this.$router.push("/private");
@@ -379,8 +419,7 @@ export default defineComponent({
       /**
        * returns de image object according to current slide
        */
-      console.log(this.album_images.results);
-      return this.album_images.results[this.slide];
+      return this.album_images[this.slide];
     },
   },
   mounted() {},

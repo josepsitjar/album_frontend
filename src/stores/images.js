@@ -43,7 +43,6 @@ export const imageStore = defineStore("images", {
           return response.json();
         });
         this.next = images.next;
-        console.log(images.next);
         this.images = images.results;
       } catch (error) {
         this.error = error;
@@ -85,7 +84,7 @@ export const imageStore = defineStore("images", {
         var userId = localStorage.getItem("userId");
         var token = localStorage.getItem("token");
 
-        this.images = await fetch(
+        let filterImages = await fetch(
           process.env.API +
             "photos/?format=json&querytext=" +
             text +
@@ -104,6 +103,9 @@ export const imageStore = defineStore("images", {
             },
           }
         ).then((response) => response.json());
+        filterImages.results.forEach((item) => {
+          this.images.push(item);
+        });
       } catch (error) {
         this.error = error;
       }
