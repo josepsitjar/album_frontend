@@ -55,4 +55,16 @@ export default {
   Enviar: "Enviar",
   "Muchas grácias por contactar con nosotros. Nos pondremos en contacto contigo tan pronto como sea posible.":
     "Moltes gràcies per contactar amb nosaltres. Ens posarem en contacte amb tu tant aviat com sigui possible.",
+  "Elige el plan que más te convenga": "Escull el plà que necessitis",
+  mes: "mes",
+  Almacenaje: "Emmagatzematge",
+  "Imágenes ilimitadas": "Imatges il·limitades",
+  "Almacenaje ilimitado": "Emmagatzematge il·limitat",
+  "Descarga de imágenes": "Descarrega d'imatges",
+  "Álbums ilimitados": "Àlbums il·limitats",
+  "Usuarios ilimitados": "Usuaris il·limitats",
+  "Descargar álbums": "Descarregar àlbums",
+  "Personalización de la interfaz": "Personalitzar la interfície",
+  "a partir de": "a partir de",
+  "Registro": "Registre",
 };

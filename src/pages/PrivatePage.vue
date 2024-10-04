@@ -377,6 +377,7 @@ export default defineComponent({
       this.album = true;
       this.map_component = false;
       this.upload_page = false;
+      this.nextImages = true;
 
       setTimeout(function () {
         window.scrollTo({

@@ -5,7 +5,7 @@ export default {
   failed: "Action failed",
   success: "Action was successful",
   "Una plataforma para almacenar, organizar y visualizar tus fotos.":
-    "A plattform to store, organize and visualize your photos.",
+    "A platform to store, organize and visualize your photos.",
   "Almacena, cataloga y visualiza tus fotos, y compártelas a través de la plataforma.":
     "Store, catalog and visualize your photos and share them through.",
   Funcionalidades: "Functionalities",
@@ -54,4 +54,16 @@ export default {
   Enviar: "Send",
   "Muchas grácias por contactar con nosotros. Nos pondremos en contacto contigo tan pronto como sea posible.":
     "Thanks to contact with us. We'll keep in contact with you as soon as possible.",
+  "Elige el plan que más te convenga": "Choose your plan",
+  mes: "month",
+  Almacenaje: "Storage",
+  "Imágenes ilimitadas": "Unlimited images",
+  "Almacenaje ilimitado": "Unlimited storage",
+  "Descarga de imágenes": "Image download",
+  "Álbums ilimitados": "Unlimited albums",
+  "Usuarios ilimitados": "Unlimited users",
+  "Descargar álbums": "Album download",
+  "Personalización de la interfaz": "Customize interface",
+  "a partir de": "from",
+  "Registro": "Register",
 };
